@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 文档支持的Markdown语法
-date: 2016-11-20 
+title: How to use MarkDown
+date: 2020-09-02 
 tags: markdown    
 ---
 
