@@ -1,3 +1,11 @@
+---
+layout: post
+title: "Access control for IoT"
+date: 2020-09-01 
+description: "Using access control to protect IoT privacy"
+tag: IoT, Access Control
+---
+
 ### This article is to record state-of-the-art IoT access control mechanism.
 
 1. **Features of IoT system**
