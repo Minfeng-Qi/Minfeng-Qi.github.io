@@ -83,4 +83,4 @@ List open source contributions here, perhaps placing emphasis on the project nam
 
 
 
-{% include comments.html %}
+<!--{% include comments.html %}-->
