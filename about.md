@@ -4,14 +4,16 @@ title: About me
 published: true
 ---
 
+<img src="./images/me.jpg" alt="Myphoto" style="zoom:30%;" align = "left"                     />
+
+
 <h3>Basic Info</h3>
-**Name:** Minfeng Qi (Dylan)
+
+**Name:** Minfeng Qi (Dylan)										
 
 **Residential Address:** Melbourne, Australia                       
 
 **Email:** minfeng.qi7@gmail.com                         
-
--------------------     ----------------------------
 
 <h3>Education</h3>
 
@@ -28,8 +30,6 @@ published: true
 
 **Bachelor, International Economy** - Zhejiang Gongshang University (China)
 
-----
-
 <h3>Experience</h3>
 
 **Your Most Recent Work Experience:**
@@ -45,8 +45,6 @@ links:
 **That Other Job You Had**
 
 Also with a short description.
-
-----
 
 <h3>Technical Experience</h3>
 
@@ -71,8 +69,6 @@ List open source contributions here, perhaps placing emphasis on the project nam
 **obscure-but-impressive-lang:** We both know this one's pushingit. Basic knowledge of **C**, **x86 assembly**, **forth**, **Common Lisp**
 
 [ref]: https://github.com/githubuser/superlongprojectname
-
-----
 
 <h3>Extra Section, Call it Whatever You Want</h3>
 
