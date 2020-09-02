@@ -20,7 +20,8 @@ published: true
 
 ##### 2017-2019
 
-**Master, Information Systems** - Monash University (Australia) </br>
+**Master, Information Systems** - Monash University (Australia)
+
 ***Minor thesis***: Improving DSST Algorithm via I-DLSC
 
 ##### 2013-2017
