@@ -80,7 +80,3 @@ List open source contributions here, perhaps placing emphasis on the project nam
 
 * Other sort of impressive-sounding thing you did
 
-
-
-
-<!--{% include comments.html %}-->
