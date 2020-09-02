@@ -7,9 +7,12 @@ published: true
 Minfeng Qi (Dylan)
 ============
 
+<h3>Basic Info</h3>
+---------
+
 -------------------     ----------------------------
-1 MyAddress                        minfeng.qi7@gmail.com
-Melbourne                          @twitter_handle
+Residential Address: <br>                        Email: minfeng.qi7@gmail.com <br>
+                          @twitter_handle
 Australia                           1800 my-phone-nr
 -------------------     ----------------------------
 
