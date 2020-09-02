@@ -4,9 +4,6 @@ title: About me
 published: true
 ---
 
-<img src="./images/me.jpg" alt="Myphoto" style="zoom:30%;" align = "left"                     />
-
-
 <h3>Basic Info</h3>
 
 **Name:** Minfeng Qi (Dylan)										
