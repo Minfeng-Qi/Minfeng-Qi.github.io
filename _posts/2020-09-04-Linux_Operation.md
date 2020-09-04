@@ -3,7 +3,7 @@ layout: post
 title: "Linux Operation"
 date: 2020-09-04 
 description: "Learn Linux from today"
-tag: Blockchain
+tag: Linux
 ---
 
 ### Funny command: 
