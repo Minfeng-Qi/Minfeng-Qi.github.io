@@ -13,6 +13,7 @@ tag: Linux
 - 改变字体：Sudo apt-get install sysvbanner / toilet / figlet
 - 火炉：sudo apt-get install libaa-bin； aafire
 - 动物说话： sudo apt install -y cowsay； cowsay hello
+
 ### Usual command: 
 
 - 添加新用户： sudo adduser <username>
