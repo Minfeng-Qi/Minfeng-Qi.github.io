@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Blockchain and IoT"
+title: "Blockchain and Privacy"
 date: 2020-09-03 
 description: "Can Blockchain protect privacy"
 tag: Blockchain
