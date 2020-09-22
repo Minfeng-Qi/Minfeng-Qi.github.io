@@ -10,7 +10,7 @@ tag: IoT
 
 ### Download Training Data
 
-We use the  [MNIST data set from Kaggle] (https://www.kaggle.com/scolianni/mnistasjpg)
+We use the  [MNIST data set from Kaggle](https://www.kaggle.com/scolianni/mnistasjpg)
 
 ### **Import All Relevant Packages**
 
