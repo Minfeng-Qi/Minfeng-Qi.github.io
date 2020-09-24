@@ -284,5 +284,45 @@ tf.argmax(a) == tf.argmax(a, axis=0)
 
 ## 4 Pad and Tile
 
-### 4.1 Pad
+### 4.1 Pad (fill tensor)
+
+**pad(tensor, paddings, mode="CONSTANT", name=None, constant_values=0)**
+
+- tensor:
+- paddings: [[x,y]] when dim =1, [[x,y], [x,y]] when dim =2, x before, y after
+- mode: CONSTANT (default);   REFLECT ; SYMMETRIC
+- name:
+- constant_values：CONSTANT (def = 0)
+
+```python
+# dim = 2
+a = tf.random.uniform([3, 4], minval=1, maxval=10, dtype=tf.int32)
+tf.pad(a, [[1,1],[3,0]], constant_values=3)
+
+# dim = 3
+b = a.reshape(a, [2,2,3])
+tf.pad(b, [[1,0],[1,1],[1,0]])
+
+```
+
+### 4.2 Tile (copy tensor)
+
+**tile(input, multiples, name=None)**
+
+- input：tensor
+- multiples: 0 delete，1 no copy，2 copy once , 3 copy twice ...
+
+```python
+# dim = 1
+a = tf.range(12)
+tf.tile(a,[2])
+
+# dim = 2
+b = tf.reshape(a, [3,4])
+tf.tile(b, [2,3]) 
+
+# dim = 3
+c = tf.reshape(a, [2,2,3])
+tf.tile(c, [2,1,2])
+```
 
