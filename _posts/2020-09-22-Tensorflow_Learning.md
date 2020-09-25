@@ -326,3 +326,144 @@ c = tf.reshape(a, [2,2,3])
 tf.tile(c, [2,1,2])
 ```
 
+## 5 Tensor Value Limit
+
+### 5.1 maximum() and minimum()
+
+```python
+# maximum() is replace the minimal value the designated value
+a = tf.range(10)   # output:  numpy=array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+tf.maximum(a, 4)	 # output:  numpy=array([4, 4, 4, 4, 4, 5, 6, 7, 8, 9]
+
+# minimum() is replace the maximal value the designated value
+tf.minimum(a, 6)   # output:  numpy=array([0, 1, 2, 3, 4, 5, 6, 6, 6, 6]
+
+# combine them together
+tf.minimum(tf.maximum(a,4),6)    # output:  numpy=array([4, 4, 4, 4, 4, 5, 6, 6, 6, 6]
+
+```
+
+### 5.2 clip_by_value()
+
+clip_by_value() is equal to combine maximum() and minimum()
+
+```python
+b = tf.random.uniform([3,4], minval=1, maxval=10, dtype=tf.int32)
+tf.clip_by_value(b,4,6) # == tf.minimum(tf.maximum(b,4),6)
+```
+
+### 5.3 relu()
+
+Relu() limits to minimal value to 0, equal to tf.maximum(a, 0)
+
+`tf.nn.relu(a)`
+
+### 5.4 clip_by_norm()
+
+clip_by_norm() is based on L2 Norm
+
+```python
+a = tf.random.normal([2,3],mean=10)
+tf.clip_by_norm(a,10)    	# limit to 0-10
+
+# the process could be like this:
+n = tf.norm(a)  # Norm L2
+a1 = a / n      # scale to 0-1
+a2 = a1 * 10    # limit to 0-10
+```
+
+### 5.5 clip_by_global_norm()
+
+clip_by_global_norm() is used to correct the gradient value and control the problem of gradient explosion
+
+```python
+t1 = tf.random.normal([3],mean=10)
+t2 = tf.random.normal([3],mean=10)
+t3 = tf.random.normal([3],mean=10)
+t_list = [t1,t2,t3]
+tf.clip_by_global_norm(t_list,25)
+
+# the process could be like this:
+global_norm = tf.norm([tf.norm(t) for t in t_list])  # Norm L2 for global
+[t*25/global_norm for t in t_list]   # limit to 0-25
+```
+
+## 6 Dataset Wrangling and Cleaning
+
+### 6.1 create dataset object
+
+```python
+# (1) use data.Dataset.range()
+# range(begin)、range(begin, end)、range（begin, end, step)
+
+dataset1 = tf.data.Dataset.range(5)
+for i in dataset1:
+    print(i)
+    print(i.numpy())
+    
+# result 
+# --- begin---
+tf.Tensor(0, shape=(), dtype=int64)
+0
+tf.Tensor(1, shape=(), dtype=int64)
+1
+tf.Tensor(2, shape=(), dtype=int64)
+2
+tf.Tensor(3, shape=(), dtype=int64)
+3
+tf.Tensor(4, shape=(), dtype=int64)
+4
+# --- end ---
+# each element is a tensor, and the value can be accessed by call numpy()
+
+
+# (2)  data.Dataset.from_generator()
+def count(stop):
+  i = 0
+  while i<stop:
+    print('i')
+    yield i
+    i += 1
+
+dataset2 = tf.data.Dataset.from_generator(count, args=[3], output_types=tf.int32, output_shapes = (), )
+
+
+# (3)  from_tensors()
+dataset2 = tf.data.Dataset.from_tensors([a,b])
+dataset2_n = tf.data.Dataset.from_tensors(np.array([a,b]))
+dataset2_t = tf.data.Dataset.from_tensors(tf.constant([a,b]))
+next(iter(dataset2))
+
+
+# (4) from_tensor_slices() **** most used one ****
+a = [0,1,2,3,4]
+b = [5,6,7,8,9]
+dataset3 = tf.data.Dataset.from_tensor_slices([a,b])
+for i,elem in enumerate(dataset3):
+    print(i, '-->', elem)
+    
+dataset3 = tf.data.Dataset.from_tensor_slices((a,b))  # most useful
+for i in dataset3:
+    print(i)
+    
+```
+
+### 6.2 dataset function
+
+```python
+# take()  to return a subdataset
+dataset = tf.data.Dataset.range(10)
+dataset_take = dataset.take(5)
+for i in dataset_take:
+    print(i)
+    
+    
+# batch(batch_size, drop_ramainder)  to batch dataset
+dataset_batch = dataset.batch(3)
+dataset_batch = dataset.batch(3,drop_remainder=True)
+
+
+# padded_batch(batch_size, padded_shapes, padding_values, drop_remainder)
+
+```
+
