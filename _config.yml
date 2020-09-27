@@ -7,6 +7,7 @@ avatarTitle: Dylan
 # 头像里面的描述
 avatarDesc: Blockchain / IoT
 url: "https://minfengqi.com"
+markdown: kramdown
 
 # 博客是否自动生成目录，false为不生成
 enableToc: true
