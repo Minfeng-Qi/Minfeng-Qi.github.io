@@ -17,59 +17,32 @@ tag: Linux
 ### Usual command: 
 
 - 添加新用户： sudo adduser <username>
-
 - 删除用户： sudo deluser <username> - -remove-home
-
 - 删除用户组： sudo grouped <groupname>
-
 - 切换用户： su -l <username>
-
 - 查看用户：who am I / whoami /
-
 - 为用户添加密码：sudo passwd <username>
-
 - 退出当前用户： exit / ctrl+ D
-
 - 查看用户组方法1：groups <username> 
-
 - 查看用户组方法2: cat /etc/group | sort / | grep - E “username”
-
 - 为用户添加超级用户组：sudo usermod -G sudo <username> (拥有root权限的才可操作)
-
 - 变更文件所有者 sudo chown <username> <filename>
-
 - 修改文件权限  sudo chmod 600 <filename> / $ chmod go-rw <filename>    [g、o 还有 u 分别表示 group（用户组）、others（其他用户） 和 user（用户），+ 和 - 分别表示增加和去掉相应的权限]
-
 - 创建文件：touch <filename>
-
 - 批量创建文件：touch <filename>{1..5}.txt
-
 - 创建目录：mkdir <dirname>  使用 -p 参数，同时创建父目录（如果不存在该父目录)
-
 - 复制文件: cp <filename> <dirname> 成功复制目录需要加上 -r 或者 -R 参数，表示递归复制
-
 - 删除文件： rm <filename> 可以使用 -f 参数强制删除
-
 - 删除目录： rm -r <dirname>
-
 - 移动文件： mv <filename> <dirname>
-
 - 重命名： mv <oldfilename> <newfilename> 
-
 - 批量重命名：rename + perl 正则表达式
-
 - 查看文件： 使用 cat，tac 和 nl 命令查看文件 前两个命令都是用来打印文件内容到标准输出（终端），其中 cat 为正序显示，tac 为倒序显示, 可以加上 -n 参数显示行号。 nl 命令，添加行号并打印，这是个比 cat -n 更专业的行号打印命令。
-
 - 分页查看文件:  more/less <filename> 可以使用 Enter 键向下滚动一行，使用 Space 键向下滚动一屏，按下 h 显示帮助，q 退出
-
 - 查看文件头尾： tail / head -n 行数 <filename>
-
 - 查看文件类型： file <filename>
-
 - 声明变量：declare <var>
-
 - 查看shell：cat /etc/shells
-
 - 搜索文件： 与搜索相关的命令常用的有 whereis，which，find 和 locate. 
 
   - Whereis <filename> whereis 只能搜索二进制文件(-b)，man 帮助文件(-m)和源代码文件(-s).  
@@ -82,9 +55,10 @@ tag: Linux
   - which 本身是 Shell 内建的一个命令，我们通常使用 which 来确定是否安装了某个指定的程序，因为它只从 PATH 环境变量指定的路径中去搜索命令并且返回第一个搜索到的结果。 Which man
 
   - find 命令的路径是作为第一个参数的， 基本命令格式为 find [path][option] [action]    find <dirname> -name <filename>
-
 - 打包文件：zip -r  -9 -q -o <zipfilename.zip> <dirname/filename> -x ~/*.zip   -r 参数表示递归打包包含子目录的全部内容，-q 参数表示为安静模式，即不向屏幕输出信息，-o，表示输出文件，需在其后紧跟打包输出文件名。这里添加了一个参数用于设置压缩级别 -[1-9]，1 表示最快压缩但体积大，9 表示体积最小但耗时最久。最后那个 -x 是为了所有zip 文件。-e 参数可以创建加密压缩包。
-- 查看所有压缩文件大小并排序： du -h -d 0 *.zip | sort 
+
+
+
 - 使用安静模式，将文件解压到指定目录: unzip -q <zipfile> -d <dirname>;  -O（英文字母，大写 o）参数指定编码类型 -O GBK
 - 查看压缩包内容：unzip -l <zipfile> 
 - 创建tar包：tar -P -v -cf <newtarname.tar> <dirname>/<filename>   -P 保留绝对路径符，-c 表示创建一个 tar 包文件，-f 用于指定创建的文件名，注意文件名必须紧跟在 -f 参数之后; -v 参数以可视的的方式输出打包的文件。
@@ -94,6 +68,9 @@ tag: Linux
 - 查看目录的容量：du -h -d 0 <dirname> -d 表示目录的深度
 - 使用 dd 命令创建虚拟镜像文件: $ dd if=/dev/zero of=virtual.img bs=1M count=256.    bs（block size）用于指定块大小（缺省单位为 Byte，也可为其指定如'K'，'M'，'G'等单位），count用于指定块数量
 - 使用 mkfs 命令格式化磁盘: $ sudo mkfs.ext4 virtual.img
+
+
+
 - 挂载： mount [-o [操作选项]] [-t 文件系统类型] [-w|--rw|--ro] [文件系统源] [挂载点]
 - 启动 crontab： sudo cron -f &
 - 为当前用户添加计划任务: crontab -e
@@ -108,7 +85,6 @@ tag: Linux
   - 第五个 $ cut /etc/passwd -c 5
 
   - 2到5之间的（包含第五个）$ cut /etc/passwd -c 2-5
-
 - 分别只输出行数、单词数、字节数、字符数和输入文本中最长一行的字节数：
 
   - 行数 $ wc -l /etc/passwd
@@ -117,8 +93,9 @@ tag: Linux
   - 字符数 $ wc -m /etc/passwd
   - 最长行字节数 $ wc -L /etc/passwd
 
-- 按特定字段排序：$ cat /etc/passwd | sort -t':' -k 3 -n; 上面的-t参数用于指定字段的分隔符，这里是以":"作为分隔符；-k 字段号用于指定对哪一个字段进行排序。这里/etc/passwd文件的第三个字段为数字，默认情况下是以字典序排序的，如果要按照数字排序就要加上-n参数：
 
+
+- 按特定字段排序：$ cat /etc/passwd | sort -t':' -k 3 -n; 上面的-t参数用于指定字段的分隔符，这里是以":"作为分隔符；-k 字段号用于指定对哪一个字段进行排序。这里/etc/passwd文件的第三个字段为数字，默认情况下是以字典序排序的，如果要按照数字排序就要加上-n参数：
 - 删除一段文本信息中的某些文字 : tr [option]...SET1 [SET2] 
 选项	说明
 -d	删除和 set1 匹配的字符，注意不是全词匹配也不是按字符顺序匹配
@@ -131,7 +108,6 @@ tag: Linux
 -i	忽略大小写的差异
 -1	指明第一个文件要用哪个字段来对比，默认对比第一个字段
 -2	指明第二个文件要用哪个字段来对比，默认对比第一个字段
-
 - 不对比数据的情况下，简单地将多个文件合并一起，以Tab隔开: paste [option] file...
 选项	说明
 -d	指定合并的分隔符，默认为 Tab
@@ -176,7 +152,7 @@ group_name:password:GID:user_list
 
 ### Linux 的目录结构
 
->> 表示将标准输出以追加的方式重定向到一个文件中，注意前面用到的 > 是以覆盖的方式重定向到一个文件中，使用的时候一定要注意分辨
+表示将标准输出以追加的方式重定向到一个文件中，注意前面用到的 > 是以覆盖的方式重定向到一个文件中，使用的时候一定要注意分辨
 
 
 文件打包和解压缩
@@ -217,10 +193,15 @@ Man 命令
 
 ### 正则表达式
 
+
+
 * |竖直分隔符表示选择，例如"boy|girl"可以匹配"boy"或者"girl"
 * +表示前面的字符必须出现至少一次(1 次或多次)，例如，"goo+gle",可以匹配"gooogle","goooogle"等；
 * ?表示前面的字符最多出现一次(0 次或 1 次)，例如，"colou?r",可以匹配"color"或者"colour";
 * *星号代表前面的字符可以不出现，也可以出现一次或者多次（0 次、或 1 次、或多次），例如，“0*42”可以匹配 42、042、0042、00042 等。
+
+
+
 * ()圆括号可以用来定义模式字符串的范围和优先级，这可以简单的理解为是否将括号内的模式串作为一个整体。例如，"gr(a|e)y"等价于"gray|grey"
 
   字符	描述
