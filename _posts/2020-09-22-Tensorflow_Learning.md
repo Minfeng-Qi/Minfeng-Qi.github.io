@@ -388,7 +388,7 @@ global_norm = tf.norm([tf.norm(t) for t in t_list])  # Norm L2 for global
 [t*25/global_norm for t in t_list]   # limit to 0-25
 ```
 
-## 6 Dataset Wrangling and Cleaning
+## 6 Dataset create operation
 
 ### 6.1 create dataset object
 
@@ -464,6 +464,50 @@ dataset_batch = dataset.batch(3,drop_remainder=True)
 
 
 # padded_batch(batch_size, padded_shapes, padding_values, drop_remainder)
+dataset_padded = dataset.padded_batch(4,　padded_shapes(10,),　padding_values=tf.constant(9,dtype=tf.int64))
+
+
+# map(_func)
+def change_dtype(t):  # change type to int32
+    return tf.cast(t,dtype=tf.int32)
+ 
+dataset = tf.data.Dataset.range(3)
+dataset_map = dataset.map(change_dtype)
+
+
+#filter(_func)
+dataset = tf.data.Dataset.range(5)
+def filter_func(t):  # filter elements equal to even
+    if t % 2 == 0:
+        return True
+    else:
+        return False
+      
+dataset_filter = dataset.filter(filter_func)
+
+
+# shuffle(buffer_size, seed, rushuffle_each_interation)
+dataset = tf.data.Dataset.range(5)
+dataset_s = dataset.shuffle(5) # when the size equals to the max, totally shuffle
+
+
+# repeat()
+dataset = tf.data.Dataset.range(3)
+dataset_repeat = dataset.repeat(3) # repeat three times
+```
+
+## 7 Activation_function
+
+### 7.1 sigmoid()
+
+$f(x) = 1/1+e^(-x)$
+
+![Sigmoid](/Minfeng-Qi.github.io/images/posts/tensorflow/sigmoid.png)
+
+```python
+x = tf.linspace(-5., 5.,6)
+# two ways to call sigmoid function 
+tf.keras.activations.sigmoid(x) or tf.sigmoid(x)
 
 ```
 
