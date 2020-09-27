@@ -506,7 +506,7 @@ $$
 
 
 
-<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/sigmoid.png' style='zoom:50'>
+<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/sigmoid.png' style='zoom:50%'>
 
 ```python
 x = tf.linspace(-5., 5.,6)
@@ -523,7 +523,7 @@ tf.keras.activations.relu( x, alpha=0.0, max_value=None, threshold=0 )
 $$
 f(x) = max(0,x)
 $$
-<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/relu.png' style='zoom:50'>
+<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/relu.png' style='zoom:50%'>
 
 ```python
 x = tf.linspace(-5., 5.,6)
@@ -548,10 +548,45 @@ tf.keras.activations.softmax(tf.constant([[1.5,4.4,2.0]]))
 $$
 f(x) = \frac{\sinh{x}}{\cosh{x}} = \frac{1-e^{-2x}}{1+e^{-2x}}
 $$
-<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/tanh.png' style='zoom:50'>
+<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/tanh.png' style='zoom:50%'>
 
 ```python
 x = tf.linspace(-5., 5.,6)
 tf.keras.activations.tanh(x)
 ```
+
+## 8 Loss_function
+
+### 8.1 Mean Square Error (MSE)
+
+Used for regression
+
+\$loss = \frac{1}{N}\sum{(y-pred)^{2}}\$
+
+```python
+loss_mse_1 = tf.losses.MSE(y,pred)
+loss_mse_2 = tf.reduce_mean(loss_mse_1)
+```
+
+### 8.2 Cross Entropy
+
+Used for classification
+
+Measure the difference information between two probability distributions. The smaller the cross entropy, the smaller the difference between the two. When the cross entropy is equal to 0, the best state is reached, that is, the predicted value is completely consistent with the true value
+$$
+H(p,q) = 	- \sum{p(x) \log(q(x))}
+$$
+𝑝(𝑥) is the probability of the true distribution, 𝑞(𝑥) is the probability estimate calculated by the model through the data.
+
+```python
+x = tf.random.normal([1,784])
+w = tf.random.normal([784,2])
+b = tf.zeros([2])
+
+logits = x@w + b
+prob = tf.math.softmax(logits, axis=1)
+tf.losses.categorical_crossentropy([0,1],prob)
+```
+
+
 
