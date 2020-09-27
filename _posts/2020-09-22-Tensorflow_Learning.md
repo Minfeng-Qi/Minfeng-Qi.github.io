@@ -500,14 +500,46 @@ dataset_repeat = dataset.repeat(3) # repeat three times
 
 ### 7.1 sigmoid()
 
-$f(x) = 1/1+e^(-x)$
+$$
+f(x) = \frac{1}{1+e^{-x}}
+$$
 
 ![Sigmoid](/Minfeng-Qi.github.io/images/posts/tensorflow/sigmoid.png)
 
 ```python
 x = tf.linspace(-5., 5.,6)
+
 # two ways to call sigmoid function 
-tf.keras.activations.sigmoid(x) or tf.sigmoid(x)
+tf.keras.activations.sigmoid(x) 
+tf.sigmoid(x)
 
 ```
 
+### 7.2 relu()
+
+tf.keras.activations.relu( x, alpha=0.0, max_value=None, threshold=0 )	
+$$
+f(x) = max(0,x)
+$$
+![Relu](/Minfeng-Qi.github.io/images/posts/tensorflow/relu.png)
+
+```python
+x = tf.linspace(-5., 5.,6)
+
+tf.keras.activations.relu(x,alpha=2., max_value=10., threshold=3.5)
+```
+
+### 7.3 softmax()
+
+Softmax() is often used to classify objects. Probability belongs to [0,1] and sum = 1.
+$$
+f(x_i) = \frac{e^{x_i}}{\sum{e^{x_i}}}
+$$
+
+```python
+tf.keras.activations.softmax(tf.constant([[1.5,4.4,2.0]]))
+```
+
+### 7.4 tanh()
+
+\$ result \in [-1,1] \$
