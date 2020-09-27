@@ -504,7 +504,9 @@ $$
 f(x) = \frac{1}{1+e^{-x}}
 $$
 
-![Sigmoid](/Minfeng-Qi.github.io/images/posts/tensorflow/sigmoid.png)
+
+
+<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/sigmoid.png' style='zoom:50'>
 
 ```python
 x = tf.linspace(-5., 5.,6)
@@ -521,7 +523,7 @@ tf.keras.activations.relu( x, alpha=0.0, max_value=None, threshold=0 )
 $$
 f(x) = max(0,x)
 $$
-![Relu](/Minfeng-Qi.github.io/images/posts/tensorflow/relu.png)
+<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/relu.png' style='zoom:50'>
 
 ```python
 x = tf.linspace(-5., 5.,6)
@@ -543,3 +545,13 @@ tf.keras.activations.softmax(tf.constant([[1.5,4.4,2.0]]))
 ### 7.4 tanh()
 
 \$ result \in [-1,1] \$
+$$
+f(x) = \frac{\sinh{x}}{\cosh{x}} = \frac{1-e^{-2x}}{1+e^{-2x}}
+$$
+<img src='/Minfeng-Qi.github.io/images/posts/tensorflow/tanh.png' style='zoom:50'>
+
+```python
+x = tf.linspace(-5., 5.,6)
+tf.keras.activations.tanh(x)
+```
+
