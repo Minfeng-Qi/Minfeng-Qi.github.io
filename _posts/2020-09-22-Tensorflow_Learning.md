@@ -4,6 +4,8 @@ title: "Learn Tensorflow Through Code"
 date: 2020-09-22 
 description: "Tensorflow"
 tag: Machine Learning
+---
+
 <head>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -15,7 +17,6 @@ tag: Machine Learning
         });
     </script>
 </head>
----
 
 ## 1 Create, access, update tensor
 

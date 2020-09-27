@@ -4,6 +4,8 @@ title: "Markdown Math"
 date: 2020-09-26 
 description: "Markdown_math"
 tag: Markdown
+---
+
 <head>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -15,7 +17,6 @@ tag: Markdown
         });
     </script>
 </head>
----
 
 ## Markdown 数学公式
 
