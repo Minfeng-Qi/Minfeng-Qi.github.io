@@ -6,4 +6,4 @@ description: "The tutorial of using Git"
 tag: Git
 ---
 
-<h3>I LOVE YOU, YVIE!</h3>
+<h3>WoW, thanks for looking me!</h3>
