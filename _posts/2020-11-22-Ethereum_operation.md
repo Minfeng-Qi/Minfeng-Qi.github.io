@@ -6,17 +6,7 @@ description: "Ethereum"
 tag: ethereum
 ---
 
-## Ethereum Tutorial
-
-In this tutorial we will:
-
-- Setup a blockchain with multiple nodes
-- Setup mining nodes
-- Connect the multiple nodes and setup the blockchain network
-- Test the blockchain network by mining blocks and verifying that blocks are propagated to all the nodes
-- Verify that the local copy of blockchain on all the nodes is updated
-
-### Setup and Prerequisite Software
+## Setup and Prerequisite Software
 
 [Go Etheruem](https://geth.ethereum.org/) (Geth) is a command line client interface tool that allows you to interact with your private Ethereum blockchain.
 
@@ -33,7 +23,7 @@ $ brew tap ethereum/ethereum
 $ brew install ethereum
 ```
 
-### Configure the Genesis Block
+## Configure the Genesis Block
 
 Create a new project directory. Within it create the `**genesis.json**` file using any editor of your choice. I use [Visual Studio code on Mac](https://code.visualstudio.com/docs/setup/mac), which is a free editor:
 
@@ -49,7 +39,7 @@ Copy the following JSON into your `**genesis.json**` file, and save the file in 
 {"config": {"chainId": 4321,"homesteadBlock": 0,"eip155Block": 0,"eip158Block": 0},"alloc": {},"difficulty" : "0x20000","gasLimit"   : "0x8880000"}
 ```
 
-### Set up the first node (Node 1)
+## Set up the first node (Node 1)
 
 Once the `**genesis.json**` file is saved, you are ready to create your first node. To create your first node, open a new terminal window and navigate to your project folder, and type in the following command:
 
@@ -111,7 +101,7 @@ To get a list of all the accounts:
 > personal.listAccounts
 ```
 
-### Set up the second node (Node 2)
+## Set up the second node (Node 2)
 
 Now let’s setup a second node in the blockchain network. The process will be similar to setting up Node1.
 
@@ -160,7 +150,7 @@ Keep open both the terminal windows, one running the Geth Console (Node1) and th
 
 In the next step we will connect Node1 and Node2 and create the blockchain network!
 
-### Connect the Nodes
+## Connect the Nodes
 
 Congratulations! You have 2 blockchain nodes running.
 
@@ -194,7 +184,7 @@ Let’s add Node1 as a peer to Node2.
 
    Let’s put it to the test, shall we? Let’s update something in Node1 and see if that change is propagated through the blockchain network to Node2.
 
-### Verify that you have a connected blockchain and a distributed database
+## Verify that you have a connected blockchain and a distributed database
 
 Ok, thus far you should have:
 
