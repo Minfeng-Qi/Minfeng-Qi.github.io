@@ -228,3 +228,23 @@ Wait until about 10 blocks have been mined and then run the following command in
 
 This command displays the contents of Block 3 from the blockchain. Notice that the data displayed in Geth Console (Node1) and Geth Console(Node2) is identical, indicating that the Block3 that was mined by Node1 was propagated over the blockchain network and is also part of the local blockchain data in Node 2.
 
+## Send Transactions
+
+```
+//unlockAccount
+> personal.unlockAccount("eth.accounts[0]")
+
+//transfer Ether to Accounts[0]
+> eth.sendTransaction({from: eth.accounts[0], to: eth.accounts[1], value: web3.toWei(1, "ether")})
+
+//check Transaction
+> txpool.status//start mining
+> miner.start(2)
+
+//stop mining
+> miner.stop()
+
+// check balance of accounts[1]
+> eth.getBalance(eth.accounts[1])
+```
+
