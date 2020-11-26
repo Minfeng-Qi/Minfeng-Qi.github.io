@@ -57,6 +57,8 @@ Now that your Node 1 is initialized, let’s start Node 1 using Geth. Within you
 
 ```
 $ geth --datadir blkchain1 --nodiscover --networkid 1234 console
+//
+$ geth --datadir blkchain1 --networkid 1234 --port 30303 --rpc --rpcport "8545" --nodiscover --rpccorsdomain "*" --rpcapi="admin,db,eth,debug,miner,net,shh,txpooql,personal,web3" console
 ```
 
 This command will start your first node and bring up the Geth console, where you can type in commands to interact with the Node1 blockchain.
