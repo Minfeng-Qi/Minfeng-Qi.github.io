@@ -29,9 +29,7 @@ Structs allow you to create more complicated data types that have multiple prope
 
 > Note that we just introduced a new type, `string`. Strings are used for arbitrary-length UTF-8 data. Ex. `string greeting = "Hello world!"`
 
-#### Working With Structs and Arrays
-
-##### Creating New Structs
+#### Creating New Structs
 
 Remember our `Person` struct in the previous example?
 
@@ -160,11 +158,7 @@ Math in Solidity is pretty straightforward. The following operations are the sam
 
 Solidity also supports an ***exponential operator\*** (i.e. "x to the power of y", x^y)
 
-#### More on Functions
-
-In this chapter, we're going to learn about function ***return values\***, and function modifiers.
-
-##### Return Values
+#### Return Values
 
 To return a value from a function, the declaration looks like this:
 
@@ -178,7 +172,7 @@ function sayHello() public returns (string memory) {
 
 In Solidity, the function declaration contains the type of the return value (in this case `string`).
 
-##### Function modifiers
+#### Function modifiers
 
 The above function doesn't actually change state in Solidity — e.g. it doesn't change any values or write anything.
 
@@ -549,3 +543,267 @@ function eatBLT(string memory sandwich) public {
 }
 ```
 
+### Lesson 3
+
+#### Ownable Contracts
+
+Contracts `Ownable` — meaning they have an owner (you) who has special privileges.
+
+Below is the `Ownable` contract taken from the ***OpenZeppelin\*** Solidity library. OpenZeppelin is a library of secure and community-vetted smart contracts that you can use in your own DApps. 
+
+Give the contract below a read-through. You're going to see a few things we haven't learned yet, but don't worry, we'll talk about them afterward.
+
+```
+/**
+ * @title Ownable
+ * @dev The Ownable contract has an owner address, and provides basic authorization control
+ * functions, this simplifies the implementation of "user permissions".
+ */
+contract Ownable {
+  address private _owner;
+
+  event OwnershipTransferred(
+    address indexed previousOwner,
+    address indexed newOwner
+  );
+
+  /**
+   * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+   * account.
+   */
+  constructor() internal {
+    _owner = msg.sender;
+    emit OwnershipTransferred(address(0), _owner);
+  }
+
+  /**
+   * @return the address of the owner.
+   */
+  function owner() public view returns(address) {
+    return _owner;
+  }
+
+  /**
+   * @dev Throws if called by any account other than the owner.
+   */
+  modifier onlyOwner() {
+    require(isOwner());
+    _;
+  }
+
+  /**
+   * @return true if `msg.sender` is the owner of the contract.
+   */
+  function isOwner() public view returns(bool) {
+    return msg.sender == _owner;
+  }
+
+  /**
+   * @dev Allows the current owner to relinquish control of the contract.
+   * @notice Renouncing to ownership will leave the contract without an owner.
+   * It will not be possible to call the functions with the `onlyOwner`
+   * modifier anymore.
+   */
+  function renounceOwnership() public onlyOwner {
+    emit OwnershipTransferred(_owner, address(0));
+    _owner = address(0);
+  }
+
+  /**
+   * @dev Allows the current owner to transfer control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+  function transferOwnership(address newOwner) public onlyOwner {
+    _transferOwnership(newOwner);
+  }
+
+  /**
+   * @dev Transfers control of the contract to a newOwner.
+   * @param newOwner The address to transfer ownership to.
+   */
+  function _transferOwnership(address newOwner) internal {
+    require(newOwner != address(0));
+    emit OwnershipTransferred(_owner, newOwner);
+    _owner = newOwner;
+  }
+}
+```
+
+A few new things here we haven't seen before:
+
+- Constructors: `function Ownable()` is a ***constructor\***, which is an optional special function that has the same name as the contract. It will get executed only one time, when the contract is first created.
+- Function Modifiers: `modifier onlyOwner()`. Modifiers are kind of half-functions that are used to modify other functions, usually to check some requirements prior to execution. In this case, `onlyOwner` can be used to limit access so **only** the **owner** of the contract can run this function. We'll talk more about function modifiers in the next chapter, and what that weird `_;` does.
+- `indexed` keyword: don't worry about this one, we don't need it yet.
+
+So the `Ownable` contract basically does the following:
+
+1. When a contract is created, its constructor sets the `owner` to `msg.sender` (the person who deployed it)
+2. It adds an `onlyOwner` modifier, which can restrict access to certain functions to only the `owner`
+3. It allows you to transfer the contract to a new `owner`
+
+`onlyOwner` is such a common requirement for contracts that most Solidity DApps start with a copy/paste of this `Ownable` contract, and then their first contract inherits from it.
+
+#### Function Modifiers
+
+A function modifier looks just like a function, but uses the keyword `modifier` instead of the keyword `function`. And it can't be called directly like a function can — instead we can attach the modifier's name at the end of a function definition to change that function's behavior.
+
+Let's take a closer look by examining `onlyOwner`:
+
+Notice the `onlyOwner` modifier on the `renounceOwnership` function. When you call `renounceOwnership`, the code inside `onlyOwner` executes **first**. Then when it hits the `_;` statement in `onlyOwner`, it goes back and executes the code inside `renounceOwnership`.
+
+So while there are other ways you can use modifiers, one of the most common use-cases is to add a quick `require` check before a function executes.
+
+In the case of `onlyOwner`, adding this modifier to a function makes it so **only** the **owner** of the contract (you, if you deployed it) can call that function.
+
+#### Function modifiers with arguments
+
+Previously we looked at the simple example of `onlyOwner`. But function modifiers can also take arguments. For example:
+
+```
+// A mapping to store a user's age:
+mapping (uint => uint) public age;
+
+// Modifier that requires this user to be older than a certain age:
+modifier olderThan(uint _age, uint _userId) {
+  require(age[_userId] >= _age);
+  _;
+}
+
+// Must be older than 16 to drive a car (in the US, at least).
+// We can call the `olderThan` modifier with arguments like so:
+function driveCar(uint _userId) public olderThan(16, _userId) {
+  // Some function logic
+}
+```
+
+You can see here that the `olderThan` modifier takes arguments just like a function does. And that the `driveCar` function passes its arguments to the modifier.
+
+Let's try making our own `modifier` that uses the zombie `level` property to restrict access to special abilities.
+
+#### Gas — the fuel Ethereum DApps run on
+
+In Solidity, your users have to pay every time they execute a function on your DApp using a currency called ***gas\***. Users buy gas with Ether (the currency on Ethereum), so your users have to spend ETH in order to execute functions on your DApp.
+
+How much gas is required to execute a function depends on how complex that function's logic is. Each individual operation has a ***gas cost\*** based roughly on how much computing resources will be required to perform that operation (e.g. writing to storage is much more expensive than adding two integers). The total ***gas cost\*** of your function is the sum of the gas costs of all its individual operations.
+
+Because running functions costs real money for your users, code optimization is much more important in Ethereum than in other programming languages. If your code is sloppy, your users are going to have to pay a premium to execute your functions — and this could add up to millions of dollars in unnecessary fees across thousands of users.
+
+#### Struct packing to save gas
+
+In Lesson 1, we mentioned that there are other types of `uint`s: `uint8`, `uint16`, `uint32`, etc.
+
+Normally there's no benefit to using these sub-types because Solidity reserves 256 bits of storage regardless of the `uint` size. For example, using `uint8` instead of `uint` (`uint256`) won't save you any gas.
+
+But there's an exception to this: inside `struct`s.
+
+If you have multiple `uint`s inside a struct, using a smaller-sized `uint` when possible will allow Solidity to pack these variables together to take up less storage. For example:
+
+```
+struct NormalStruct {
+  uint a;
+  uint b;
+  uint c;
+}
+
+struct MiniMe {
+  uint32 a;
+  uint32 b;
+  uint c;
+}
+
+// `mini` will cost less gas than `normal` because of struct packing
+NormalStruct normal = NormalStruct(10, 20, 30);
+MiniMe mini = MiniMe(10, 20, 30); 
+```
+
+For this reason, inside a struct you'll want to use the smallest integer sub-types you can get away with.
+
+You'll also want to cluster identical data types together (i.e. put them next to each other in the struct) so that Solidity can minimize the required storage space. For example, a struct with fields `uint c; uint32 a; uint32 b;` will cost less gas than a struct with fields `uint32 a; uint c; uint32 b;` because the `uint32` fields are clustered together.
+
+#### Time units
+
+Solidity provides some native units for dealing with time.
+
+The variable `now` will return the current unix timestamp of the latest block (the number of seconds that have passed since January 1st 1970). The unix time as I write this is `1515527488`.
+
+> Note: Unix time is traditionally stored in a 32-bit number. This will lead to the "Year 2038" problem, when 32-bit unix timestamps will overflow and break a lot of legacy systems. So if we wanted our DApp to keep running 20 years from now, we could use a 64-bit number instead — but our users would have to spend more gas to use our DApp in the meantime. Design decisions!
+
+Solidity also contains the time units `seconds`, `minutes`, `hours`, `days`, `weeks` and `years`. These will convert to a `uint` of the number of seconds in that length of time. So `1 minutes` is `60`, `1 hours` is `3600` (60 seconds x 60 minutes), `1 days` is `86400` (24 hours x 60 minutes x 60 seconds), etc.
+
+Here's an example of how these time units can be useful:
+
+```
+uint lastUpdated;
+
+// Set `lastUpdated` to `now`
+function updateTimestamp() public {
+  lastUpdated = now;
+}
+
+// Will return `true` if 5 minutes have passed since `updateTimestamp` was 
+// called, `false` if 5 minutes have not passed
+function fiveMinutesHavePassed() public view returns (bool) {
+  return (now >= (lastUpdated + 5 minutes));
+}
+```
+
+#### View functions don't cost gas
+
+`view` functions don't cost any gas when they're called externally by a user.
+
+This is because `view` functions don't actually change anything on the blockchain – they only read the data. So marking a function with `view` tells `web3.js` that it only needs to query your local Ethereum node to run the function, and it doesn't actually have to create a transaction on the blockchain (which would need to be run on every single node, and cost gas).
+
+We'll cover setting up web3.js with your own node later. But for now the big takeaway is that you can optimize your DApp's gas usage for your users by using read-only `external view` functions wherever possible.
+
+> Note: If a `view` function is called internally from another function in the same contract that is **not** a `view` function, it will still cost gas. This is because the other function creates a transaction on Ethereum, and will still need to be verified from every node. **So `view` functions are only free when they're called externally.**
+
+#### Declaring arrays in memory
+
+You can use the `memory` keyword with arrays to create a new array inside a function without needing to write anything to storage. The array will only exist until the end of the function call, and this is a lot cheaper gas-wise than updating an array in `storage` — free if it's a `view` function called externally.
+
+Here's how to declare an array in memory:
+
+```
+function getArray() external pure returns(uint[] memory) {
+  // Instantiate a new array in memory with a length of 3
+  uint[] memory values = new uint[](3);
+
+  // Put some values to it
+  values[0] = 1;
+  values[1] = 2;
+  values[2] = 3;
+
+  return values;
+}
+```
+
+This is a trivial example just to show you the syntax, but in the next chapter we'll look at combining this with `for` loops for real use-cases.
+
+> Note: memory arrays **must** be created with a length argument (in this example, `3`). They currently cannot be resized like storage arrays can with `array.push()`, although this may be changed in a future version of Solidity.
+
+#### Using `for` loops
+
+The syntax of `for` loops in Solidity is similar to JavaScript.
+
+Let's look at an example where we want to make an array of even numbers:
+
+```
+function getEvens() pure external returns(uint[] memory) {
+  uint[] memory evens = new uint[](5);
+  // Keep track of the index in the new array:
+  uint counter = 0;
+  // Iterate 1 through 10 with a for loop:
+  for (uint i = 1; i <= 10; i++) {
+    // If `i` is even...
+    if (i % 2 == 0) {
+      // Add it to our array
+      evens[counter] = i;
+      // Increment counter to the next empty index in `evens`:
+      counter++;
+    }
+  }
+  return evens;
+}
+```
+
+This function will return an array with the contents `[2, 4, 6, 8, 10]`.
