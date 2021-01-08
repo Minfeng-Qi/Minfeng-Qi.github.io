@@ -807,3 +807,456 @@ function getEvens() pure external returns(uint[] memory) {
 ```
 
 This function will return an array with the contents `[2, 4, 6, 8, 10]`.
+
+### Lesson 4 
+
+#### Payable Modifier
+
+These modifiers can all be stacked together on a function definition as follows:
+
+```
+function test() external view onlyOwner anotherModifier { /* ... */ }
+```
+
+`payable` functions are part of what makes Solidity and Ethereum so cool — they are a special type of function that can receive Ether.
+
+Let that sink in for a minute. When you call an API function on a normal web server, you can't send US dollars along with your function call — nor can you send Bitcoin.
+
+But in Ethereum, because both the money (*Ether*), the data (*transaction payload*), and the contract code itself all live on Ethereum, it's possible for you to call a function **and** pay money to the contract at the same time.
+
+This allows for some really interesting logic, like requiring a certain payment to the contract in order to execute a function.
+
+```
+contract OnlineStore {
+  function buySomething() external payable {
+    // Check to make sure 0.001 ether was sent to the function call:
+    require(msg.value == 0.001 ether);
+    // If so, some logic to transfer the digital item to the caller of the function:
+    transferThing(msg.sender);
+  }
+}
+```
+
+Here, `msg.value` is a way to see how much Ether was sent to the contract, and `ether` is a built-in unit.
+
+What happens here is that someone would call the function from web3.js (from the DApp's JavaScript front-end) as follows:
+
+```
+// Assuming `OnlineStore` points to your contract on Ethereum:
+OnlineStore.buySomething({from: web3.eth.defaultAccount, value: web3.utils.toWei(0.001)})
+```
+
+Notice the `value` field, where the javascript function call specifies how much `ether` to send (0.001). If you think of the transaction like an envelope, and the parameters you send to the function call are the contents of the letter you put inside, then adding a `value` is like putting cash inside the envelope — the letter and the money get delivered together to the recipient.
+
+> Note: If a function is not marked `payable` and you try to send Ether to it as above, the function will reject your transaction.
+
+#### Withdraws
+
+After you send Ether to a contract, it gets stored in the contract's Ethereum account, and it will be trapped there — unless you add a function to withdraw the Ether from the contract.
+
+You can write a function to withdraw Ether from the contract as follows:
+
+```
+contract GetPaid is Ownable {
+  function withdraw() external onlyOwner {
+    address payable _owner = address(uint160(owner()));
+    _owner.transfer(address(this).balance);
+  }
+}
+```
+
+Note that we're using `owner()` and `onlyOwner` from the `Ownable` contract, assuming that was imported.
+
+And most important for `_owner` variable that it's have to be a `address payable` type for doing a sending and transferring ether instruction.
+
+But our `owner()` isn't a type `address payable` so we have to explicitly cast to `address payable`. Casting any integer type like `uint160` to address produces an `address payable`.
+
+You can transfer Ether to an address using the `transfer` function, and `address(this).balance` will return the total balance stored on the contract. So if 100 users had paid 1 Ether to our contract, `address(this).balance` would equal 100 Ether.
+
+You can use `transfer` to send funds to any Ethereum address. For example, you could have a function that transfers Ether back to the `msg.sender` if they overpaid for an item:
+
+```
+uint itemFee = 0.001 ether;
+msg.sender.transfer(msg.value - itemFee);
+```
+
+Or in a contract with a buyer and a seller, you could save the seller's address in storage, then when someone purchases his item, transfer him the fee paid by the buyer: `seller.transfer(msg.value)`.
+
+These are some examples of what makes Ethereum programming really cool — you can have decentralized marketplaces like this that aren't controlled by anyone.
+
+#### Random number generation via `keccak256`
+
+The best source of randomness we have in Solidity is the `keccak256` hash function.
+
+We could do something like the following to generate a random number:
+
+```
+// Generate a random number between 1 and 100:
+uint randNonce = 0;
+uint random = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+randNonce++;
+uint random2 = uint(keccak256(abi.encodePacked(now, msg.sender, randNonce))) % 100;
+```
+
+What this would do is take the timestamp of `now`, the `msg.sender`, and an incrementing `nonce` (a number that is only ever used once, so we don't run the same hash function with the same input parameters twice).
+
+It would then "pack" the inputs and use `keccak` to convert them to a random hash. Next, it would convert that hash to a `uint`, and then use `% 100` to take only the last 2 digits. This will give us a totally random number between 0 and 99.
+
+### Lesson 5 
+
+#### ERC721 Standard
+
+Let's take a look at the ERC721 standard:
+
+```
+contract ERC721 {
+  event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+  event Approval(address indexed _owner, address indexed _approved, uint256 indexed _tokenId);
+
+  function balanceOf(address _owner) external view returns (uint256);
+  function ownerOf(uint256 _tokenId) external view returns (address);
+  function transferFrom(address _from, address _to, uint256 _tokenId) external payable;
+  function approve(address _approved, uint256 _tokenId) external payable;
+}
+```
+
+#### BalanceOf
+
+```
+  function balanceOf(address _owner) external view returns (uint256 _balance);
+```
+
+This function simply takes an `address`, and returns how many tokens that `address` owns.
+
+#### OwnerOf
+
+```
+  function ownerOf(uint256 _tokenId) external view returns (address _owner);
+```
+
+This function takes a token ID (in our case, a Zombie ID), and returns the `address` of the person who owns it.
+
+#### Using SafeMath
+
+OpenZeppelin has created a ***library\*** called SafeMath that prevents these issues by default.
+
+But before we get into that... What's a library?
+
+A ***library\*** is a special type of contract in Solidity. One of the things it is useful for is to attach functions to native data types.
+
+For example, with the SafeMath library, we'll use the syntax `using SafeMath for uint256`. The SafeMath library has 4 functions — `add`, `sub`, `mul`, and `div`. And now we can access these functions from `uint256` as follows:
+
+```
+using SafeMath for uint256;
+
+uint256 a = 5;
+uint256 b = a.add(3); // 5 + 3 = 8
+uint256 c = a.mul(2); // 5 * 2 = 10
+```
+
+Let's take a look at the code behind SafeMath:
+
+```
+library SafeMath {
+
+  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+
+  function div(uint256 a, uint256 b) internal pure returns (uint256) {
+    // assert(b > 0); // Solidity automatically throws when dividing by 0
+    uint256 c = a / b;
+    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+    return c;
+  }
+
+  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+
+  function add(uint256 a, uint256 b) internal pure returns (uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+}
+```
+
+First we have the `library` keyword — libraries are similar to `contract`s but with a few differences. For our purposes, libraries allow us to use the `using` keyword, which automatically tacks on all of the library's methods to another data type:
+
+```
+using SafeMath for uint;
+// now we can use these methods on any uint
+uint test = 2;
+test = test.mul(3); // test now equals 6
+test = test.add(5); // test now equals 11
+```
+
+Note that the `mul` and `add` functions each require 2 arguments, but when we declare `using SafeMath for uint`, the `uint` we call the function on (`test`) is automatically passed in as the first argument.
+
+Let's look at the code behind `add` to see what SafeMath does:
+
+```
+function add(uint256 a, uint256 b) internal pure returns (uint256) {
+  uint256 c = a + b;
+  assert(c >= a);
+  return c;
+}
+```
+
+Basically `add` just adds 2 `uint`s like `+`, but it also contains an `assert` statement to make sure the sum is greater than `a`. This protects us from overflows.
+
+`assert` is similar to `require`, where it will throw an error if false. The difference between `assert` and `require` is that `require` will refund the user the rest of their gas when a function fails, whereas `assert` will not. So most of the time you want to use `require` in your code; `assert` is typically used when something has gone horribly wrong with the code (like a `uint` overflow).
+
+So, simply put, SafeMath's `add`, `sub`, `mul`, and `div` are functions that do the basic 4 math operations, but throw an error if an overflow or underflow occurs.
+
+#### Syntax for comments
+
+Commenting in Solidity is just like JavaScript. You've already seen some examples of single line comments throughout the CryptoZombies lessons:
+
+```
+// This is a single-line comment. It's kind of like a note to self (or to others)
+```
+
+Just add double `//` anywhere and you're commenting. It's so easy that you should do it all the time.
+
+But I hear you — sometimes a single line is not enough. You are born a writer, after all!
+
+Thus we also have multi-line comments:
+
+```
+contract CryptoZombies {
+  /* This is a multi-lined comment. I'd like to thank all of you
+    who have taken your time to try this programming course.
+    I know it's free to all of you, and it will stay free
+    forever, but we still put our heart and soul into making
+    this as good as it can be.
+
+    Know that this is still the beginning of Blockchain development.
+    We've come very far but there are so many ways to make this
+    community better. If we made a mistake somewhere, you can
+    help us out and open a pull request here:
+    https://github.com/loomnetwork/cryptozombie-lessons
+
+    Or if you have some ideas, comments, or just want to say
+    hi - drop by our Telegram community at https://t.me/loomnetwork
+  */
+}
+```
+
+In particular, it's good practice to comment your code to explain the expected behavior of every function in your contract. This way another developer (or you, after a 6 month hiatus from a project!) can quickly skim and understand at a high level what your code does without having to read the code itself.
+
+The standard in the Solidity community is to use a format called ***natspec\***, which looks like this:
+
+```
+/// @title A contract for basic math operations
+/// @author Dylan
+/// @notice For now, this contract just adds a multiply function
+contract Math {
+  /// @notice Multiplies 2 numbers together
+  /// @param x the first uint.
+  /// @param y the second uint.
+  /// @return z the product of (x * y)
+  /// @dev This function does not currently check for overflows
+  function multiply(uint x, uint y) returns (uint z) {
+    // This is just a normal comment, and won't get picked up by natspec
+    z = x * y;
+  }
+}
+```
+
+`@title` and `@author` are straightforward.
+
+`@notice` explains to a **user** what the contract / function does. `@dev` is for explaining extra details to developers.
+
+`@param` and `@return` are for describing what each parameter and return value of a function are for.
+
+Note that you don't always have to use all of these tags for every function — all tags are optional. But at the very least, leave a `@dev` note explaining what each function does.
+
+### Lesson 6
+
+#### Intro to Web3.js
+
+The Ethereum network is made up of nodes, with each containing a copy of the blockchain. When you want to call a function on a smart contract, you need to query one of these nodes and tell it:
+
+1. The address of the smart contract
+2. The function you want to call, and
+3. The variables you want to pass to that function.
+
+Ethereum nodes only speak a language called ***JSON-RPC\***, which isn't very human-readable. 
+
+Depending on your project's workflow, you can add Web3.js to your project using most package tools:
+
+```
+// Using NPM
+npm install web3
+
+// Using Yarn
+yarn add web3
+
+// Using Bower
+bower install web3
+
+// ...etc.
+```
+
+Or you can simply download the minified `.js` file from [github](https://github.com/ethereum/web3.js/blob/1.0/dist/web3.min.js) and include it in your project:
+
+```
+<script language="javascript" type="text/javascript" src="web3.min.js"></script>
+```
+
+#### Web3 Providers
+
+The first thing we need is a ***Web3 Provider\***.
+
+Remember, Ethereum is made up of ***nodes\*** that all share a copy of the same data. Setting a Web3 Provider in Web3.js tells our code **which node** we should be talking to handle our reads and writes. It's kind of like setting the URL of the remote web server for your API calls in a traditional web app.
+
+You could host your own Ethereum node as a provider. However, there's a third-party service that makes your life easier so you don't need to maintain your own Ethereum node in order to provide a DApp for your users.
+
+**(1) Infura**
+
+[Infura](https://infura.io/) is a service that maintains a set of Ethereum nodes with a caching layer for fast reads, which you can access for free through their API. Using Infura as a provider, you can reliably send and receive messages to/from the Ethereum blockchain without needing to set up and maintain your own node.
+
+You can set up Web3 to use Infura as your web3 provider as follows:
+
+```
+var web3 = new Web3(new Web3.providers.WebsocketProvider("wss://mainnet.infura.io/ws"));
+```
+
+However, since our DApp is going to be used by many users — and these users are going to WRITE to the blockchain and not just read from it — we'll need a way for these users to sign transactions with their private key.
+
+> Note: Ethereum (and blockchains in general) use a public / private key pair to digitally sign transactions. Think of it like an extremely secure password for a digital signature. That way if I change some data on the blockchain, I can **prove** via my public key that I was the one who signed it — but since no one knows my private key, no one can forge a transaction for me.
+
+Cryptography is complicated, so unless you're a security expert and you really know what you're doing, it's probably not a good idea to try to manage users' private keys yourself in our app's front-end.
+
+But luckily you don't need to — there are already services that handle this for you. The most popular of these is ***Metamask\***.
+
+**(2) Metamask**
+
+[Metamask](https://metamask.io/) is a browser extension for Chrome and Firefox that lets users securely manage their Ethereum accounts and private keys, and use these accounts to interact with websites that are using Web3.js. (If you haven't used it before, you'll definitely want to go and install it — then your browser is Web3 enabled, and you can now interact with any website that communicates with the Ethereum blockchain!).
+
+And as a developer, if you want users to interact with your DApp through a website in their web browser, you'll definitely want to make it Metamask-compatible.
+
+> **Note**: Metamask uses Infura's servers under the hood as a web3 provider, just like we did above — but it also gives the user the option to choose their own web3 provider. So by using Metamask's web3 provider, you're giving the user a choice, and it's one less thing you have to worry about in your app.
+
+#### Using Metamask's web3 provider
+
+Metamask injects their web3 provider into the browser in the global JavaScript object `web3`. So your app can check to see if `web3` exists, and if it does use `web3.currentProvider` as its provider.
+
+Here's some template code provided by Metamask for how we can detect to see if the user has Metamask installed, and if not tell them they'll need to install it to use our app:
+
+```
+window.addEventListener('load', function() {
+
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3js = new Web3(web3.currentProvider);
+  } else {
+    // Handle the case where the user doesn't have web3. Probably
+    // show them a message telling them to install Metamask in
+    // order to use our app.
+  }
+
+  // Now you can start your app & access web3js freely:
+  startApp()
+
+})
+```
+
+You can use this boilerplate code in all the apps you create in order to require users to have Metamask to use your DApp.
+
+> Note: There are other private key management programs your users might be using besides MetaMask, such as the web browser **Mist**. However, they all implement a common pattern of injecting the variable `web3`, so the method we describe here for detecting the user's web3 provider will work for these as well.
+
+#### Talking to Contracts
+
+Now that we've initialized Web3.js with MetaMask's Web3 provider, let's set it up to talk to our smart contract.
+
+Web3.js will need 2 things to talk to your contract: its ***address\*** and its ***ABI\***.
+
+**(1) Contract Address**
+
+After you finish writing your smart contract, you will compile it and deploy it to Ethereum. 
+
+After you deploy your contract, it gets a fixed address on Ethereum where it will live forever. If you recall from Lesson 2, the address of the CryptoKitties contract on Ethereum mainnet is `0x06012c8cf97BEaD5deAe237070F9587f8E7A266d`.
+
+You'll need to copy this address after deploying in order to talk to your smart contract.
+
+**(2) Contract ABI**
+
+The other thing Web3.js will need to talk to your contract is its ***ABI\***.
+
+ABI stands for **Application Binary Interface**. Basically it's a representation of your contracts' methods in JSON format that tells Web3.js how to format function calls in a way your contract will understand.
+
+When you compile your contract to deploy to Ethereum, the Solidity compiler will give you the ABI, so you'll need to copy and save this in addition to the contract address.
+
+Once you have your contract's address and ABI, you can instantiate it in Web3 as follows:
+
+```
+// Instantiate myContract
+var myContract = new web3js.eth.Contract(myABI, myContractAddress);
+```
+
+#### Calling Contract Functions
+
+Our contract is all set up! Now we can use Web3.js to talk to it.
+
+Web3.js has two methods we will use to call functions on our contract: `call` and `send`.
+
+**(1) Call**
+
+`call` is used for `view` and `pure` functions. It only runs on the local node, and won't create a transaction on the blockchain.
+
+> **Review:** `view` and `pure` functions are read-only and don't change state on the blockchain. They also don't cost any gas, and the user won't be prompted to sign a transaction with MetaMask.
+
+Using Web3.js, you would `call` a function named `myMethod` with the parameter `123` as follows:
+
+```
+myContract.methods.myMethod(123).call()
+```
+
+**(2) Send**
+
+`send` will create a transaction and change data on the blockchain. You'll need to use `send` for any functions that aren't `view` or `pure`.
+
+> **Note:** `send`ing a transaction will require the user to pay gas, and will pop up their Metamask to prompt them to sign a transaction. When we use Metamask as our web3 provider, this all happens automatically when we call `send()`, and we don't need to do anything special in our code. Pretty cool!
+
+Using Web3.js, you would `send` a transaction calling a function named `myMethod` with the parameter `123` as follows:
+
+```
+myContract.methods.myMethod(123).send()
+```
+
+#### Metamask & Accounts
+
+MetaMask allows the user to manage multiple accounts in their extension.
+
+We can see which account is currently active on the injected `web3` variable via:
+
+```
+var userAccount = web3.eth.accounts[0]
+```
+
+Because the user can switch the active account at any time in MetaMask, our app needs to monitor this variable to see if it has changed and update the UI accordingly.
+
+We can do that with a `setInterval` loop as follows:
+
+```
+var accountInterval = setInterval(function() {
+  // Check if account has changed
+  if (web3.eth.accounts[0] !== userAccount) {
+    userAccount = web3.eth.accounts[0];
+    // Call some function to update the UI with the new account
+    updateInterface();
+  }
+}, 100);
+```
+
+What this does is check every 100 milliseconds to see if `userAccount` is still equal `web3.eth.accounts[0]` (i.e. does the user still have that account active). If not, it reassigns `userAccount` to the currently active account, and calls a function to update the display.
