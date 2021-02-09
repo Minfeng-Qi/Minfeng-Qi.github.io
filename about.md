@@ -22,61 +22,56 @@ published: true
 
 **Master, Information Systems** - Monash University (Australia)
 
-***Minor thesis***: Improving DSST Algorithm via I-DLSC
-
 ##### 2013-2017
 
 **Bachelor, International Economy** - Zhejiang Gongshang University (China)
 
-<h3>Experience</h3>
 
-**Your Most Recent Work Experience:**
+<h3>Research Experience</h3>
 
-Short text containing the type of work done, results obtained,
-lessons learned and other remarks. Can also include lists and
-links:
+**Current Research Direction**: Blockchain, Privacy-preservation, IoT
 
-* First item
+**Publication**: ACCTP: Cross Chain Transaction Platform for High-Value Assets
 
-* Item with [link](http://www.example.com). Links will work both in the html and pdf versions.
+**Minor thesis**: Improving DSST Algorithm via I-DLSC
 
-**That Other Job You Had**
 
-Also with a short description.
+<h3>Work Experience</h3>
 
-<h3>Technical Experience</h3>
+**Organization:** State Street Global Advisors
 
-**My Cool Side Project**
+**Department:** Department of Information Technology
 
-For items which don't have a clear time ordering, a definition list can be used to have named items.
+**Location:** Hangzhou, China
 
-    * These items can also contain lists, but you need to mind the
-      indentation levels in the markdown source.
-    * Second item.
+**Position:** Systems Engineer
 
-**Open Source**
+**Description:** 
 
-List open source contributions here, perhaps placing emphasis on the project names, for example the **Linux Kernel**, where you  implemented multithreading over a long weekend, or **node.js** (with [link](http://nodejs.org)) which was actually totally your idea...
+1. Design and development documents 
+2. Basic development, code programming, unit/integration testing 
+3. Communicate with colleagues in the global working group (USA, Franklin, London) via email and phone
 
-**Programming Languages**
 
-**first-lang:** Here, we have an itemization, where we only want to add descriptions to the first few items, but still want to mention some others together at the end. A format that works well here is a description list where the first few items have their first word emphasized, and the last item contains the final few emphasized terms. Notice the reasonably nice page break in the pdf version, which wouldn't happen if we generated the pdf via html.
+<h3>Programming Languages</h3>
 
-**second-lang:** Description of your experience with second-lang, perhaps again including a [link] [ref], this time placing the url reference elsewhere in the document to reduce clutter (see source file). 
+**first-lang:** Python
 
-**obscure-but-impressive-lang:** We both know this one's pushingit. Basic knowledge of **C**, **x86 assembly**, **forth**, **Common Lisp**
+**second-lang:** Solidity
 
-[ref]: https://github.com/githubuser/superlongprojectname
+**other-langs:** R, Matlab
 
-<h3>Extra Section, Call it Whatever You Want</h3>
+
+<h3>Skills</h3>
 
 * Human Languages:
 
-     * English (native speaker)
-     * Japanese
-     * This is what a nested list looks like.
+     * Chinese (native speaker)
+     * English
 
-* Random tidbit
-
-* Other sort of impressive-sounding thing you did
+* Sports:
+     
+     * Badminton
+     * Table-tennis
+     * Tennis
 
