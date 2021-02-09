@@ -48,9 +48,9 @@ published: true
 
 **Description:** 
 
-1. Design and development documents 
-2. Basic development, code programming, unit/integration testing 
-3. Communicate with colleagues in the global working group (USA, Franklin, London) via email and phone
+    * Design and development documents 
+    * Basic development, code programming, unit/integration testing 
+    * Communicate with colleagues in the global working group (USA, Franklin, London) via email and phone
 
 
 <h3>Programming Languages</h3>
@@ -59,7 +59,7 @@ published: true
 
 **second-lang:** Solidity
 
-**other-langs:** R, Matlab
+**other-langs:** R, Matlab, Php
 
 
 <h3>Skills</h3>
