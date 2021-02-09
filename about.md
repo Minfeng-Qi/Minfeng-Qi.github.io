@@ -48,9 +48,9 @@ published: true
 
 **Description:** 
 
-    * Design and development documents 
-    * Basic development, code programming, unit/integration testing 
-    * Communicate with colleagues in the global working group (USA, Franklin, London) via email and phone
+1. Design and development documents 
+2. Basic development, code programming, unit/integration testing 
+3. Communicate with colleagues in the global working group (USA, Franklin, London) via email and phone
 
 
 <h3>Programming Languages</h3>
