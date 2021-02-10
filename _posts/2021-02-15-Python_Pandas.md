@@ -12,7 +12,7 @@ tag: Python
 
 ```
 import numpy as np
-import pandas as pd12
+import pandas as pd
 ```
 
 2、导入CSV或者xlsx文件：
@@ -216,6 +216,7 @@ df_inner=pd.merge(df_inner,split,right_index=True, left_index=True)
 ### 数据提取
 
 主要用到的三个函数：loc,iloc和ix，loc函数按标签值进行提取，iloc按位置进行提取，ix可以同时按标签和位置进行提取。
+
 1、按索引提取单行的数值
 
 ```
@@ -285,6 +286,7 @@ pd.DataFrame(category.str[:3])
 ### 数据筛选
 
 使用与、或、非三个条件配合大于、小于、等于对数据进行筛选，并进行计数和求和。
+
 1、使用“与”进行筛选
 
 ```
@@ -324,6 +326,7 @@ df_inner.query('city == ["beijing", "shanghai"]').price.sum()
 ### 数据汇总
 
 主要函数是groupby和pivote_table
+
 1、对所有的列进行计数汇总
 
 ```
@@ -351,6 +354,7 @@ df_inner.groupby('city')['price'].agg([len,np.sum, np.mean])
 ### 数据统计
 
 数据采样，计算标准差，协方差和相关系数
+
 1、简单的数据采样
 
 ```
@@ -415,6 +419,7 @@ df_inner.corr()
 ### 数据输出
 
 分析后的数据可以输出为xlsx格式和csv格式
+
 1、写入Excel
 
 ```
