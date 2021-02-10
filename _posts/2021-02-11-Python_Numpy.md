@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Python Numpy"
-date: 2021-02-05
+date: 2021-02-11
 description: "Python Numpy"
 tag: Python
 ---
