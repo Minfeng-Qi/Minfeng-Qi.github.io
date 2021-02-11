@@ -105,10 +105,10 @@ df.tail()    #默认后10 行数据
 df.fillna(value=0)
 ```
 
-2、使用列prince的均值对NA进行填充：
+2、使用列price的均值对NA进行填充：
 
 ```
-df['prince'].fillna(df['prince'].mean())
+df['price'].fillna(df['price'].mean())
 ```
 
 3、清楚city字段的字符空格：
@@ -153,6 +153,30 @@ df['city'].drop_duplicates(keep='last')
 df['city'].replace('sh', 'shanghai')
 ```
 
+
+
+### 归一化 （Normalization）、标准化 （Standardization）和中心化/零均值化 （Zero-centered）
+
+```python
+# 归一化 （Normalization）
+def normalization(data):
+    _range = np.max(data) - np.min(data)
+    return (data - np.min(data)) / _range
+ 
+# 标准化 （Standardization） 
+def standardization(data):
+    mu = np.mean(data, axis=0)
+    sigma = np.std(data, axis=0)
+    return (data - mu) / sigm
+
+# 中心化/零均值化 （Zero-centered）
+def normalization(data):
+    _range = np.max(abs(data))
+    return data / _range
+```
+
+
+
 ### 数据预处理
 
 ```
@@ -189,7 +213,7 @@ df_inner.sort_values(by=['age'])
 df_inner.sort_index()
 ```
 
-5、如果prince列的值>3000，group列显示high，否则显示low：
+5、如果price列的值>3000，group列显示high，否则显示low：
 
 ```
 df_inner['group'] = np.where(df_inner['price'] > 3000,'high','low')
@@ -317,7 +341,7 @@ df_inner.loc[(df_inner['city'] != 'beijing'), ['id','city','age','category','gen
 df_inner.query('city == ["beijing", "shanghai"]')
 ```
 
-6、对筛选后的结果按prince进行求和
+6、对筛选后的结果按price进行求和
 
 ```
 df_inner.query('city == ["beijing", "shanghai"]').price.sum()
@@ -345,7 +369,7 @@ df_inner.groupby('city')['id'].count()
 df_inner.groupby(['city','size'])['id'].count()
 ```
 
-4、对city字段进行汇总，并分别计算prince的合计和均值
+4、对city字段进行汇总，并分别计算price的合计和均值
 
 ```
 df_inner.groupby('city')['price'].agg([len,np.sum, np.mean]) 
@@ -431,3 +455,4 @@ df_inner.to_excel('excel_to_python.xlsx', sheet_name='bluewhale_cc')
 ```
 df_inner.to_csv('excel_to_python.csv') 
 ```
+
