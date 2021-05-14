@@ -6,7 +6,7 @@ published: true
 
 <h3>Basic Info</h3>
 
-**Name:** Minfeng Qi (Dylan)										
+**Name:** Minfeng Qi										
 
 **Residential Address:** Melbourne, Australia                       
 
@@ -31,7 +31,10 @@ published: true
 
 **Current Research Direction**: Blockchain, Privacy-preservation, IoT
 
-**Publication**: ACCTP: Cross Chain Transaction Platform for High-Value Assets
+**Publication**: 
+
+2020: ACCTP: Cross Chain Transaction Platform for High-Value Assets
+2021: A Blockchain-enabled Federated Learning Model for Privacy Preservation: System Design
 
 **Minor thesis**: Improving DSST Algorithm via I-DLSC
 
