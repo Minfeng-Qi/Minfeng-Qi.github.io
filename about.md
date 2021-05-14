@@ -18,7 +18,7 @@ published: true
 
 **PhD, Information Technology** - Swinburne University of Technology (Australia)
 
-##### 2017-2019
+##### 2018-2019
 
 **Master, Information Systems** - Monash University (Australia)
 
