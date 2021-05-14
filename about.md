@@ -45,8 +45,6 @@ published: true
 
 **Department:** Department of Information Technology
 
-**Location:** Hangzhou, China
-
 **Position:** Systems Engineer
 
 **Description:** 
