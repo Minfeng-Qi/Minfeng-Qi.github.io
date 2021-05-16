@@ -75,6 +75,14 @@ disables the peer discovery mechanism and enables manual peer addition.
 
 identity of your Ethereum network, other peer nodes will also have the same network identifier. **The network id can be any random integer value.**
 
+- `eth：`包含一些跟操作区块链相关的方法；
+- `net：`包含一些查看p2p网络状态的方法；
+- `admin：`包含一些与管理节点相关的方法；
+- `miner：`包含启动&停止挖矿的一些方法；
+- `personal：`主要包含一些管理账户的方法；
+- `txpool：`包含一些查看交易内存池的方法；
+- `web3：`包含了以上对象，还包含一些单位换算的方法。
+
 Now that you are in the Geth Console, to get more information about the node we will use the **admin** command. Type in the following command in the Geth console:
 
 ```
