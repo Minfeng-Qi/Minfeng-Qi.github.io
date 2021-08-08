@@ -133,7 +133,7 @@ d1 %>% left_join(d2, by = "species")
 
 结果应该没问题，然鹅，总让人感觉怪怪的，过程有点折腾，希望不这么麻烦。
 
-## 1. 1 across()横空出世
+## 1.1 across()横空出世
 
 `across()`的出现，让这一切变得简单和清晰，上面三步完成的动作，一步搞定
 
@@ -714,6 +714,4 @@ df %>%
 - 不同性质的操作，有时可以一起写出，不用再`left_join()`
 
 ![across()函数总结图](https://bookdown.org/wangminjie/R4DS/images/across.png)
-
-​																			图 26.1: across()函数总结图
 
