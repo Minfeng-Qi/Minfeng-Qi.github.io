@@ -11,6 +11,7 @@ body {
 .container {
 	display: none;
 }
+
 .peach {
 	background-color: #FFDAB9;
 	
@@ -1263,7 +1264,7 @@ audio {
 	bottom: 0;
 	padding:10px 0px 10px 0px;
 }
-#play, #bannar_coming, #balloons_flying,#cake_fadein,#light_candle,#wish_message,#story {
+#play, #bannar_coming, #balloons_flying,#cake_fadein,#light_candle,#wish_message,#story,#photo{
 	display: none;
 }
 
@@ -1311,3 +1312,4 @@ audio {
     		-webkit-transform: scale(0.9);
     	}
     }*/
+
