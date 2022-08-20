@@ -201,10 +201,12 @@ $('document').ready(function(){
 		}
 		
 		msgLoop(0);
-		$(this).fadeOut('slow').delay(200000).promise().done(function(){
+		$(this).fadeOut('slow').delay(130000).promise().done(function(){
 			$('#photo').fadeIn('slow');
 		});
 	});
+
+	
 });
 
 
