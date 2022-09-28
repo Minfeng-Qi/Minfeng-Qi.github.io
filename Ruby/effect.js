@@ -1,4 +1,5 @@
 $(window).load(function(){
+	$('.pic').hide();
 	$('.loading').fadeOut('fast');
 	$('.container').fadeIn('fast');
 });
@@ -201,11 +202,21 @@ $('document').ready(function(){
 		}
 		
 		msgLoop(0);
-		$(this).fadeOut('slow').delay(130000).promise().done(function(){
+		$(this).fadeOut('slow').delay(10000).promise().done(function(){
 			$('#photo').fadeIn('slow');
 		});
 	});
 
+	$('#photo').click(function(){
+		$(this).fadeOut('slow');
+		$('.message').fadeOut('fast').promise().done(function(){
+			$('.balloons').fadeOut('slow');
+			$('.bannar').fadeOut('slow');
+			$('.cake').fadeOut('slow');
+			// $('.pic').css('visibility', 'visiable');
+			$('.pic').show();
+		});
+	});
 
 });
 

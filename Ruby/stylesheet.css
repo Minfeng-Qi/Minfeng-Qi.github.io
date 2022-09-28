@@ -1312,4 +1312,119 @@ audio {
     		-webkit-transform: scale(0.9);
     	}
     }*/
-
+	.container{
+		width:1100px;
+		height:450px;
+		margin:60px auto;
+		position: relative;
+	}
+	.pic{
+		width:320px;
+		/* visibility: hidden; */
+		padding:20px 20px 20px 15px;
+		background-color: white;
+		border:1px solid #ddd;
+		box-shadow: 2px 2px 3px rgba(50,50,50,0.4);
+		z-index:1;
+		position: absolute;
+		-webkit-transition: all 0.5s ease-in;
+		-moz-transition: all 0.5s ease-in;
+		-ms-transition: all 0.5s ease-in;
+		-o-transition: all 0.5s ease-in;
+		transition: all 0.5s ease-in;
+	}
+	.pic:hover{
+		z-index:2;
+		box-shadow:15px 15px 20px rgba(50, 50, 50,0.4);
+		transform: rotate(0deg) scale(1.2);
+		-webkit-transform: rotate(0deg) scale(1.2);
+	}
+	/* .container img{
+		padding:20px 20px 20px 15px;
+		background-color: white;
+		border:1px solid #ddd;
+		box-shadow: 2px 2px 3px rgba(50,50,50,0.4);
+		z-index:1;
+		position: absolute;
+		-webkit-transition: all 0.5s ease-in;
+		-moz-transition: all 0.5s ease-in;
+		-ms-transition: all 0.5s ease-in;
+		-o-transition: all 0.5s ease-in;
+		transition: all 0.5s ease-in;
+	} */
+	/* .container img:hover{
+		z-index:2;
+		box-shadow:15px 15px 20px rgba(50, 50, 50,0.4);
+		transform: rotate(0deg) scale(1.2);
+		-webkit-transform: rotate(0deg) scale(1.2);
+	} */
+	.pic1{
+		left:400px;
+		top:0px;
+		transform: rotate(-5deg);
+		-webkit-transform: rotate(-5deg);
+		/* visibility: hidden; */
+	}
+	.pic2{
+		left:200px;
+		top:0px;
+		transform: rotate(-20deg);
+		-webkit-transform: rotate(-20deg);
+		/* visibility: hidden; */
+	}
+	.pic3{
+		right:100px;
+		top:-30px;
+		transform: rotate(5deg);
+		-webkit-transform: rotate(5deg);
+		/* visibility: hidden; */
+	}
+	.pic4{
+		top:150px;
+		left:300px;
+		transform: rotate(-10deg);
+		-webkit-transform: rotate(-10deg);
+		/* visibility: hidden; */
+	}
+	.pic5{
+		left:-100px;
+		top:-45px;
+		transform: rotate(-10deg);
+		-webkit-transform: rotate(-10deg);
+		/* visibility: hidden; */
+	}
+	.pic6{
+		left:0px;
+		top:0px;
+		transform: rotate(10deg);
+		-webkit-transform: rotate(10deg);
+		/* visibility: hidden; */
+	}
+	.pic7{
+		left:850px;
+		top:0px;
+		transform: rotate(20deg);
+		-webkit-transform: rotate(20deg);
+		/* visibility: hidden; */
+	}
+	.pic8{
+		left:850px;
+		top:250px;
+		transform: rotate(5deg);
+		-webkit-transform: rotate(5deg);
+		/* visibility: hidden; */
+	}
+	.pic9{
+		left:550px;
+		top:90px;
+		transform: rotate(15deg);
+		-webkit-transform: rotate(15deg);
+		/* visibility: hidden; */
+	}	
+	.pic10{
+		left:50px;
+		top:150px;
+		transform: rotate(15deg);
+		-webkit-transform: rotate(15deg);
+		/* visibility: hidden; */
+	}	
