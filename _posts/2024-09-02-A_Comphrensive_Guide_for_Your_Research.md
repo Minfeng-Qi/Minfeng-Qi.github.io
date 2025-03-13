@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Comphrensive Guide for Your Research"
-date: 2024-09-02
+date: 2025-03-13
 description: "Embark on your journey of discovery and innovation with confidence—this guide is here to support and inspire you every step of the way."
 author: Dr. Minfeng Qi
 tag: research
@@ -50,27 +50,27 @@ tag: research
   - [LaTeX 项目网站](https://www.latex-project.org/)：获取 LaTeX 发行版和文档。
   - [Overleaf](https://www.overleaf.com/)：在线 LaTeX 编辑器，支持实时协作。
 
-### 文献下载工具
+### 文献查找下载工具
 
 在科研过程中，获取所需的学术文献是非常重要的一环。以下是一些合法且常用的文献获取渠道和工具：
 
 - **图书馆资源**：利用所属学校或研究机构的图书馆，访问订阅的数据库和期刊，如 [IEEE Xplore](https://ieeexplore.ieee.org/)、[ACM Digital Library](https://dl.acm.org/)、[SpringerLink](https://link.springer.com/) 等。
-
 - **开放获取（Open Access）平台**：
   - [arXiv](https://arxiv.org/)：主要收录物理、数学、计算机科学等领域的预印本论文。
-  - [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/)：提供生物医学和生命科学领域的免费全文文章。
+  - [arXiv-sanity](http://arxiv-sanity.com/)：在功能上相比于 arXiv 有很大的改进，包括在浏览中显示摘要、评论和非常基本的社交、推荐、库功能。搜索也更好用。
   - [Directory of Open Access Journals (DOAJ)](https://doaj.org/)：索引和提供高质量的开放获取期刊。
-
 - **学术社交网络**：
   - [ResearchGate](https://www.researchgate.net/)：研究人员可以分享自己的论文，并与同行交流。
   - [Academia.edu](https://www.academia.edu/)：提供论文分享和跟踪研究兴趣的功能。
-
-- **作者个人主页**：一些研究者会在个人或机构主页上分享自己的论文，直接访问作者的网站可能获取到需要的文献。
-
-- **Google 学术搜索**：
+- **学术搜索**：
   - [Google Scholar](https://scholar.google.com/)：通过搜索论文标题，查找可用的在线版本或相关链接。
-
+  - [dblp: computer science bibliography](https://dblp.org/)：专为 CS 设计的论文查询网站，收录比较顶级并可以被检索到的论文。可以根据会议、期刊等分类查询作者的论文，想搜一个计算机会议的所有文章时好用。
+  - [Semantic scholar](https://www.semanticscholar.org/)：可以结合外部材料整合进行论文的语义分析。功能包括：展示引用和参考文献、度量论文影响力、展示论文图表、自动生成关键词（根据标题）、分析作者、在互联网寻找额外资源（例如，相关 youtube 视频），以及推荐论文。
+  - [Paper Digest – AI for tracking and summarizing papers](https://www.paperdigest.org/): 提供邮件订阅前一天出的论文的列表，附有每篇论文的一句话总结。对我更重要的是这个网站也会在每个顶会论文全部公布时进行整理。
+  - [SCI-Hub 科研论文全文下载可用网址](http://tool.yovisun.com/scihub/)
+- **代码实现查找**: [Papers With Code](https://paperswithcode.com/)：自动把论文连接到实现代码的 GitHub 资源库和数据集，并根据 GitHub 的收藏量排序。展示各任务上的 SOTA 以供比较。
 - **电子邮件请求**：如果无法获取全文，可直接给论文作者发送礼貌的电子邮件，说明研究需求，请求共享论文。
+- **作者个人主页**：一些研究者会在个人或机构主页上分享自己的论文，直接访问作者的网站可能获取到需要的文献。
 
 
 
@@ -103,11 +103,9 @@ tag: research
 
 - **概念理解**：
   - [Bitcoin Whitepaper](https://bitcoin.org/bitcoin.pdf)：比特币白皮书，了解区块链的基础原理。
-
 - **平台学习**：
   - [以太坊](https://ethereum.org/)：支持智能合约的区块链平台。
   - [Hyperledger](https://www.hyperledger.org/)：Linux 基金会托管的开源区块链项目。
-
 - **智能合约**：
   - [Solidity 官方文档](https://docs.soliditylang.org/)：用于编写以太坊智能合约的编程语言。
 
@@ -215,19 +213,71 @@ tag: research
 - **Awesome Public Datasets**：
   - [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets)：GitHub 上的公共数据集大全。
 
-### 注意事项
+### 语言表达
 
-在使用数据集时，请注意以下事项：
+#### 搭配查找
 
-- **数据版权与许可**：确保遵守数据集的使用许可协议，合法使用数据。
-- **数据隐私**：对于包含个人信息的数据，需遵守相关的隐私保护法规，如 GDPR 等。
-- **数据清洗与预处理**：在使用数据前，进行必要的数据清洗和预处理，确保数据质量。
+- [Linggle](https://linggle.com/)：搜索最常出现的英文词语搭配。不确定自己的表达方式是否正确时使用。
+- [Corpus of Contemporary American English (COCA)](https://www.english-corpora.org/coca/)：可以查词汇搭配的**美式**英语语料库，可以查看具体的用了这个词的句子。 [British National Corpus (BYU-BNC)](https://www.english-corpora.org/bnc/)：英式英语的语料库，语料比美式的少一些
+- [Thesaurus](https://www.thesaurus.com/)：将低端词汇转换为同义的高端词汇。
+- [易搜搭ESODA](http://www.esoda.org/)：清华HCI Lab工作室出品的一款适合国人英语写作的词组搭配查询工具。可切换具体研究方向的论文语料库，展示相关的可替换用法，支持中英混搜。
+- [Words and phrases: frequency, genres, collocates, concordances, synonyms, and WordNet](https://www.wordandphrase.info/analyzeText.asp)：用不同颜色区分高中低频词，展现代表文章类型的词汇，并归类出相关可替换的词。虽然说是英文写作措辞辅助工具，感觉最大的用途是学习相关领域论文常用的词汇和搭配。
+
+#### 句式推荐
+
+- [Academic Phrasebank](http://www.phrasebank.manchester.ac.uk/)：学术用语库，告诉你各个章节适合用哪些句式搭配。
+
+#### 写作检查
+
+除开各种类 ChatGPT 外的一些选择。请注意在线检测工具的泄露风险，谨慎处理关键文字。
+
+- [Grammarly](https://www.grammarly.com/)：语法、句型、标点、选词检测修改，有浏览器插件。
+- [Nounplus.net](https://www.nounplus.net/)：免费的在线英文语法检测。
+
+#### 公式编辑
+
+- [Mathpix](https://mathpix.com/)：通过截取复杂数学方程式的截图将其转换为 LaTeX 代码。可以处理 PDF 的印刷体和照片中的手写公式等。
+- [MyScript Webdemo](https://webdemo.myscript.com/)：Math 模块可以将手写公式转为 LaTeX 代码；同时，Diagram 模块可以将手绘的框图转化为工整的框图。
+- [Detexify LaTeX handwritten symbol recognition](http://detexify.kirelabs.org/classify.html): 忘记某些字符用 LaTeX 怎么表示时，可以在这个网站上通过手写来查询。
+- [Excel2LaTeX](https://ctan.org/tex-archive/support/excel2latex)：用在 Excel 上的宏工具，能够将 Excel 表格转换为 LaTeX 代码，节省很多时间。能够满足大多数效果的转换，有些效果可能需要微调。
+
+### 绘制示意图
+
+#### 绘图工具
+
+- Mac OS 系统可以使用 OmniGraffle。
+- PPT 通常是我的第一选择：入手快，种类多，自由度高，支持导出矢量图。
+
+#### 绘图参考
+
+- [Paper-Picture-Writing-Code](https://github.com/MLNLP-World/Paper-Picture-Writing-Code)：基于 LaTex 的画图代码，包含折线图、柱状图、散点图、注意力可视化以及结构图。
+- [academic-drawing](https://github.com/xinychen/academic-drawing)：Matlab/Python 绘图，主要用于画时序数据。
+- [awesome-latex-drawing](https://github.com/xinychen/awesome-latex-drawing)：LaTeX 绘图，主要用于画贝叶斯网络、张量分解等。
+- [PlotNeuralNet](https://github.com/HarisIqbal88/PlotNeuralNet)：Python 得到可用于 LaTeX 的图，主要画 CNN。
+
+#### PPT 插件
+
+- [IguanaTex](http://www.jonathanleroux.org/software/iguanatex/)：帮助插入 LaTeX 公式的 PPT 插件。将输入的 LaTeX 代码转换为高质量的 png 或矢量图来插入。
+
+#### 图片转换
+
+提供各种格式的图片的转换服务的网站很多。这里只是简单列举，你也可以通过搜索引擎来找到其他类似的网站。
+
+- [Convert PNG/JPEG (Raster) to EPS/PDF (Vector) Format](http://www.tlhiv.org/rast2vec/)：将 jpg、png 格式的图片文件转换为 eps 文件。
+- [EPS到PDF转换器](https://convertio.co/zh/eps-pdf/)：也可以将 eps 文件转换为别的格式的图片。
+
+#### 图片修整
+
+- [Crop PDF files online - PDF Tools](https://pdfresizer.com/crop)：裁剪 pdf 文件的白边。
+- TexLive 自带了一些命令行工具：
+  - 将 eps 转换为 pdf：`epstopdf <file.eps>`；
+  - 自动裁剪 pdf 的白边：`pdfcrop <file.pdf>`。
 
 
 
 ## 计算机科学会议与期刊介绍
 
-### 顶级会议（致谢[CCF-Deadlines](https://ccfddl.github.io/)）
+### 顶级会议
 
 - **人工智能**：
   - [NeurIPS](https://nips.cc/)
@@ -262,6 +312,13 @@ tag: research
 - **Journal of Machine Learning Research (JMLR)**：
   - [JMLR 官网](http://www.jmlr.org/)
 
+### 会议期刊查找筛选
+
+- [ccf-deadlines](https://ccfddl.github.io/)：可以根据研究方向和 CCF 等级来筛选本年度已经确定截稿日期的会议。对国内的同学比较友好。
+- [AI Conference Deadlines](https://aideadlin.es/)：可以根据研究方向筛选会议。但是好像需要科学上网才能看到全部信息。
+- [Conference List](http://www.conferencelist.info/upcoming.html)：根据截稿时间排序，过期的会议不在首页出现。有一页可以看每个研究方向有哪些会议，但是没有办法根据研究方向筛选还没过期的会议。
+- [Conference Partner (会伴)](http://www.myhuiban.com/)：计算机最新国际会议和期刊列表。可以注册以关注会议或期刊。比较全，但目前信息更新不及时。
+
 
 
 ## 论文的编写与发表
@@ -290,22 +347,6 @@ tag: research
 
 10. **参考文献**：列出论文中提及的所有参考文献，格式统一，信息完整，方便读者查阅。只列出实际引用的文献，确保准确性和相关性。
 
-### 论文写作技巧
-
-- **题目订定**：题目应具有吸引力，准确反映论文内容，激发读者兴趣。
-
-- **摘要撰写**：内容简明扼要，涵盖研究的目的、方法和主要成果。
-
-- **逻辑结构**：论文结构应清晰，层次分明，各部分衔接自然，论述有理有据。
-
-- **语言表达**：语言准确、清晰，避免歧义和冗长的句子。
-
-- **图表使用**：合理使用图表，辅助说明，增强论文的可读性和说服力。
-
-- **客观性**：讨论和分析中保持客观，实事求是，不隐瞒或夸大研究结果。
-
-- **引用规范**：正确引用他人工作，遵守学术规范和版权规定，避免学术不端。
-
 ### 投稿与审稿流程
 
 - **期刊/会议选择**：根据研究领域和成果选择合适的期刊或会议，了解其影响力和审稿周期。
@@ -326,12 +367,28 @@ tag: research
 
 
 
-## 科研方法论
+## 论文投递
 
-- **问题定义**：明确研究问题，设定清晰的目标。
-- **文献调研**：全面了解相关领域的研究现状。
-- **方法设计**：选择适当的方法和工具来解决问题。
-- **实验验证**：设计实验，验证假设和模型。
+### 匿名链接
+
+出于论文盲审考虑，有时候文件（如源码）链接需要是匿名的。有些人会选择在 Github 上创建一个匿名账号，但为每一个会议的每一篇论文都创建一个账号可能过于繁琐。我查到有一些工具支持匿名分享文件如下。
+
+- [Dropbox](https://www.dropbox.com/)：应该是最常用的。
+- [Open Science Framework](http://help.osf.io/m/links_forks/l/783581-create-a-view-only-link-for-a-registration)
+- [Figshare](https://knowledge.figshare.com/articles/item/how-to-share-cite-or-embed-my-data)
+
+### arXiv 提交
+
+- [Arxiv 论文提交流程——看这篇就够了](https://zhuanlan.zhihu.com/p/109405192)：文章，用于了解将论文提交至 arXiv 上的流程。
+- [arxiv-latex-cleaner](https://github.com/google-research/arxiv-latex-cleaner)：将论文的 LaTeX 代码清理为提交至 arXiv 上的要求。一个亮点是能够自动清理掉论文中所有被注释掉的内容。
+- [overleaf -> arxiv 丝滑提交过程](https://zhuanlan.zhihu.com/p/558225069)：如果是使用 Overleaf（而不是在本地将 LaTeX 代码编译为论文），可以先参考本文下载合适的源码包，然后再考虑使用 arxiv-latex-cleaner。
+
+### 代码开源
+
+为已发表的论文提供清晰、可复现的代码能够有效推动领域发展。这里推荐一些对开源代码有帮助的工具。
+
+- [ReproducibilityChecklist-v2.0](https://www.cs.mcgill.ca/~jpineau/ReproducibilityChecklist.pdf)：一份机器学习复现清单，列举了你应该提供哪些文件来增强你的论文的可复现性。
+- [pigar](https://github.com/Damnever/pigar)：Python 项目 requirements 文件自动生成工具。
 
 
 
@@ -340,34 +397,15 @@ tag: research
 - **计划制定**：
   - [Trello](https://trello.com/)：可视化的任务管理工具。
   - [Asana](https://asana.com/)：团队协作和项目管理平台。
-
 - **笔记和知识管理工具**：
   - [Notion](https://www.notion.so/)：集笔记、知识库、任务管理于一体的全能工具。
   - [OneNote](https://www.onenote.com/)：微软推出的数字笔记应用，支持多平台同步。
   - [Evernote](https://evernote.com/)：支持跨设备的笔记和文档管理工具。
 - **番茄工作法**：
   - [番茄钟应用](https://tomato-timer.com/)：在线番茄钟，帮助专注工作。
-
 - **效率工具**：
   - [RescueTime](https://www.rescuetime.com/)：帮助追踪和管理时间使用情况。
   - [Focus@Will](https://www.focusatwill.com/)：提供专注工作的背景音乐，提高效率。
-- **避免拖延**：设定截止日期，自我监督。
-
-
-
-## 学术交流与合作
-
-- **参加学术会议**：拓展人脉，了解最新研究动态。
-- **合作研究**：与他人共同开展项目，取长补短。
-- **导师指导**：积极寻求导师和前辈的建议和指导。
-
-
-
-## 科研伦理与学术规范
-
-- **学术诚信**：杜绝抄袭和数据造假。
-- **引用规范**：正确引用他人工作，遵守版权规定。
-- **道德考虑**：在研究中遵守伦理准则，保护隐私和数据安全。
 
 
 
@@ -380,25 +418,6 @@ tag: research
 - **口头报告**：练习演讲技巧，提升表达能力。
 - **海报展示**：
   - [PosterMyWall](https://www.postermywall.com/)：在线制作海报的工具。
-
-
-
-## 申请科研资助
-
-- **基金项目**：了解国家和机构提供的科研基金。
-  - [国家自然科学基金委员会](http://www.nsfc.gov.cn/)：提供国家级科研资助信息。
-
-- **申请书撰写**：掌握申请书的结构和写作技巧。
-- **预算编制**：合理规划项目资金使用。
-
-
-
-## 职业规划与发展
-
-- **继续深造**：考虑攻读硕士、博士学位。
-- **学术职位**：了解成为教授、研究员的路径。
-- **工业界机会**：
-  - [LinkedIn](https://www.linkedin.com/)：职业社交平台，探索工作机会。
 
 
 
@@ -430,38 +449,18 @@ tag: research
 - **知乎**：
   - [知乎](https://www.zhihu.com/)：获取中文社区的知识分享。
 
-### 参与开源项目
-
-- **GitHub**：
-  - [GitHub Explore](https://github.com/explore)：寻找感兴趣的项目，贡献代码。
-
-- **Google Summer of Code**：
-  - [GSoC 官网](https://summerofcode.withgoogle.com/)：参加暑期编程活动。
-
 ### 心理健康咨询
 
 在科研过程中，保持心理健康至关重要。高强度的学习和研究压力可能会影响情绪和身心健康，以下是一些心理健康咨询资源：
 
 - **学校心理辅导中心**：大多数高校都设有心理辅导中心，提供专业的心理咨询服务，建议预约咨询。
-
 - **心理健康热线**：
   - **中国心理援助热线**：拨打电话 **12320**，获取免费的心理援助服务。
   - **全国心理援助联盟热线**：**400-161-9995**，提供全天候的心理支持。
-
 - **在线心理咨询平台**：
   - [壹心理](https://www.xinli001.com/)：提供专业的在线心理咨询和心理测试。
   - [简单心理](https://www.jiandanxinli.com/)：连接用户与持证心理咨询师的平台。
   - [春雨心理](https://www.chunyuyisheng.com/pc/psychology/)：提供在线心理咨询和健康指导。
-
-- **心理健康应用程序**：
-  - **悦动圈**：通过运动和社区互动促进心理健康。
-  - **正念冥想**：提供冥想练习，帮助缓解压力和焦虑。
-
-- **自助资源**：
-  - [心理健康自助手册](https://www.mentalhealth.org.uk/publications)（英文）：提供丰富的心理健康知识和自助指南。
-  - **心理健康公众号**：关注专业的心理学科普公众号，获取心理调适方法。
-
-**建议**：定期关注自己的心理状态，合理安排工作和休息，必要时寻求专业帮助，有助于提高科研效率和生活质量。
 
 
 
