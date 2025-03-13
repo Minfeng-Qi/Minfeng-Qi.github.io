@@ -72,6 +72,66 @@ tag: research
 - **电子邮件请求**：如果无法获取全文，可直接给论文作者发送礼貌的电子邮件，说明研究需求，请求共享论文。
 - **作者个人主页**：一些研究者会在个人或机构主页上分享自己的论文，直接访问作者的网站可能获取到需要的文献。
 
+### 语言表达工具
+
+#### 搭配查找
+
+- [Linggle](https://linggle.com/)：搜索最常出现的英文词语搭配。不确定自己的表达方式是否正确时使用。
+- [Corpus of Contemporary American English (COCA)](https://www.english-corpora.org/coca/)：可以查词汇搭配的**美式**英语语料库，可以查看具体的用了这个词的句子。 [British National Corpus (BYU-BNC)](https://www.english-corpora.org/bnc/)：英式英语的语料库，语料比美式的少一些
+- [Thesaurus](https://www.thesaurus.com/)：将低端词汇转换为同义的高端词汇。
+- [易搜搭ESODA](http://www.esoda.org/)：清华HCI Lab工作室出品的一款适合国人英语写作的词组搭配查询工具。可切换具体研究方向的论文语料库，展示相关的可替换用法，支持中英混搜。
+- [Words and phrases: frequency, genres, collocates, concordances, synonyms, and WordNet](https://www.wordandphrase.info/analyzeText.asp)：用不同颜色区分高中低频词，展现代表文章类型的词汇，并归类出相关可替换的词。虽然说是英文写作措辞辅助工具，感觉最大的用途是学习相关领域论文常用的词汇和搭配。
+
+#### 句式推荐
+
+- [Academic Phrasebank](http://www.phrasebank.manchester.ac.uk/)：学术用语库，告诉你各个章节适合用哪些句式搭配。
+
+#### 写作检查
+
+除开各种类 ChatGPT 外的一些选择。请注意在线检测工具的泄露风险，谨慎处理关键文字。
+
+- [Grammarly](https://www.grammarly.com/)：语法、句型、标点、选词检测修改，有浏览器插件。
+- [Nounplus.net](https://www.nounplus.net/)：免费的在线英文语法检测。
+
+#### 公式编辑
+
+- [Mathpix](https://mathpix.com/)：通过截取复杂数学方程式的截图将其转换为 LaTeX 代码。可以处理 PDF 的印刷体和照片中的手写公式等。
+- [MyScript Webdemo](https://webdemo.myscript.com/)：Math 模块可以将手写公式转为 LaTeX 代码；同时，Diagram 模块可以将手绘的框图转化为工整的框图。
+- [Detexify LaTeX handwritten symbol recognition](http://detexify.kirelabs.org/classify.html): 忘记某些字符用 LaTeX 怎么表示时，可以在这个网站上通过手写来查询。
+- [Excel2LaTeX](https://ctan.org/tex-archive/support/excel2latex)：用在 Excel 上的宏工具，能够将 Excel 表格转换为 LaTeX 代码，节省很多时间。能够满足大多数效果的转换，有些效果可能需要微调。
+
+### 绘制示意图工具
+
+#### 绘图工具
+
+- Mac OS 系统可以使用 OmniGraffle。
+- PPT 通常是我的第一选择：入手快，种类多，自由度高，支持导出矢量图。
+
+#### 绘图参考
+
+- [Paper-Picture-Writing-Code](https://github.com/MLNLP-World/Paper-Picture-Writing-Code)：基于 LaTex 的画图代码，包含折线图、柱状图、散点图、注意力可视化以及结构图。
+- [academic-drawing](https://github.com/xinychen/academic-drawing)：Matlab/Python 绘图，主要用于画时序数据。
+- [awesome-latex-drawing](https://github.com/xinychen/awesome-latex-drawing)：LaTeX 绘图，主要用于画贝叶斯网络、张量分解等。
+- [PlotNeuralNet](https://github.com/HarisIqbal88/PlotNeuralNet)：Python 得到可用于 LaTeX 的图，主要画 CNN。
+
+#### PPT 插件
+
+- [IguanaTex](http://www.jonathanleroux.org/software/iguanatex/)：帮助插入 LaTeX 公式的 PPT 插件。将输入的 LaTeX 代码转换为高质量的 png 或矢量图来插入。
+
+#### 图片转换
+
+提供各种格式的图片的转换服务的网站很多。这里只是简单列举，你也可以通过搜索引擎来找到其他类似的网站。
+
+- [Convert PNG/JPEG (Raster) to EPS/PDF (Vector) Format](http://www.tlhiv.org/rast2vec/)：将 jpg、png 格式的图片文件转换为 eps 文件。
+- [EPS到PDF转换器](https://convertio.co/zh/eps-pdf/)：也可以将 eps 文件转换为别的格式的图片。
+
+#### 图片修整
+
+- [Crop PDF files online - PDF Tools](https://pdfresizer.com/crop)：裁剪 pdf 文件的白边。
+- TexLive 自带了一些命令行工具：
+  - 将 eps 转换为 pdf：`epstopdf <file.eps>`；
+  - 自动裁剪 pdf 的白边：`pdfcrop <file.pdf>`。
+
 
 
 ## 计算机科学基础知识的学习途径
@@ -212,66 +272,6 @@ tag: research
   - [KDNuggets 数据集列表](https://www.kdnuggets.com/datasets/index.html)：机器学习和数据科学领域的数据集资源汇总。
 - **Awesome Public Datasets**：
   - [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets)：GitHub 上的公共数据集大全。
-
-### 语言表达
-
-#### 搭配查找
-
-- [Linggle](https://linggle.com/)：搜索最常出现的英文词语搭配。不确定自己的表达方式是否正确时使用。
-- [Corpus of Contemporary American English (COCA)](https://www.english-corpora.org/coca/)：可以查词汇搭配的**美式**英语语料库，可以查看具体的用了这个词的句子。 [British National Corpus (BYU-BNC)](https://www.english-corpora.org/bnc/)：英式英语的语料库，语料比美式的少一些
-- [Thesaurus](https://www.thesaurus.com/)：将低端词汇转换为同义的高端词汇。
-- [易搜搭ESODA](http://www.esoda.org/)：清华HCI Lab工作室出品的一款适合国人英语写作的词组搭配查询工具。可切换具体研究方向的论文语料库，展示相关的可替换用法，支持中英混搜。
-- [Words and phrases: frequency, genres, collocates, concordances, synonyms, and WordNet](https://www.wordandphrase.info/analyzeText.asp)：用不同颜色区分高中低频词，展现代表文章类型的词汇，并归类出相关可替换的词。虽然说是英文写作措辞辅助工具，感觉最大的用途是学习相关领域论文常用的词汇和搭配。
-
-#### 句式推荐
-
-- [Academic Phrasebank](http://www.phrasebank.manchester.ac.uk/)：学术用语库，告诉你各个章节适合用哪些句式搭配。
-
-#### 写作检查
-
-除开各种类 ChatGPT 外的一些选择。请注意在线检测工具的泄露风险，谨慎处理关键文字。
-
-- [Grammarly](https://www.grammarly.com/)：语法、句型、标点、选词检测修改，有浏览器插件。
-- [Nounplus.net](https://www.nounplus.net/)：免费的在线英文语法检测。
-
-#### 公式编辑
-
-- [Mathpix](https://mathpix.com/)：通过截取复杂数学方程式的截图将其转换为 LaTeX 代码。可以处理 PDF 的印刷体和照片中的手写公式等。
-- [MyScript Webdemo](https://webdemo.myscript.com/)：Math 模块可以将手写公式转为 LaTeX 代码；同时，Diagram 模块可以将手绘的框图转化为工整的框图。
-- [Detexify LaTeX handwritten symbol recognition](http://detexify.kirelabs.org/classify.html): 忘记某些字符用 LaTeX 怎么表示时，可以在这个网站上通过手写来查询。
-- [Excel2LaTeX](https://ctan.org/tex-archive/support/excel2latex)：用在 Excel 上的宏工具，能够将 Excel 表格转换为 LaTeX 代码，节省很多时间。能够满足大多数效果的转换，有些效果可能需要微调。
-
-### 绘制示意图
-
-#### 绘图工具
-
-- Mac OS 系统可以使用 OmniGraffle。
-- PPT 通常是我的第一选择：入手快，种类多，自由度高，支持导出矢量图。
-
-#### 绘图参考
-
-- [Paper-Picture-Writing-Code](https://github.com/MLNLP-World/Paper-Picture-Writing-Code)：基于 LaTex 的画图代码，包含折线图、柱状图、散点图、注意力可视化以及结构图。
-- [academic-drawing](https://github.com/xinychen/academic-drawing)：Matlab/Python 绘图，主要用于画时序数据。
-- [awesome-latex-drawing](https://github.com/xinychen/awesome-latex-drawing)：LaTeX 绘图，主要用于画贝叶斯网络、张量分解等。
-- [PlotNeuralNet](https://github.com/HarisIqbal88/PlotNeuralNet)：Python 得到可用于 LaTeX 的图，主要画 CNN。
-
-#### PPT 插件
-
-- [IguanaTex](http://www.jonathanleroux.org/software/iguanatex/)：帮助插入 LaTeX 公式的 PPT 插件。将输入的 LaTeX 代码转换为高质量的 png 或矢量图来插入。
-
-#### 图片转换
-
-提供各种格式的图片的转换服务的网站很多。这里只是简单列举，你也可以通过搜索引擎来找到其他类似的网站。
-
-- [Convert PNG/JPEG (Raster) to EPS/PDF (Vector) Format](http://www.tlhiv.org/rast2vec/)：将 jpg、png 格式的图片文件转换为 eps 文件。
-- [EPS到PDF转换器](https://convertio.co/zh/eps-pdf/)：也可以将 eps 文件转换为别的格式的图片。
-
-#### 图片修整
-
-- [Crop PDF files online - PDF Tools](https://pdfresizer.com/crop)：裁剪 pdf 文件的白边。
-- TexLive 自带了一些命令行工具：
-  - 将 eps 转换为 pdf：`epstopdf <file.eps>`；
-  - 自动裁剪 pdf 的白边：`pdfcrop <file.pdf>`。
 
 
 
